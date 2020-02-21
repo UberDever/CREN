@@ -1,0 +1,49 @@
+
+#include "util.hpp"
+
+namespace SCENE_NAME
+{
+    using namespace util;
+
+    class DATA
+    {
+    public:
+        ~DATA() {}
+    };
+
+    e_exitCodes init();
+    e_gameStates event();
+    e_gameStates update();
+    void render();
+    void clean();
+}
+
+
+
+
+#include "s_SCENE_NAME.hpp"
+
+namespace SCENE_NAME
+{
+    DATA* pd;
+    e_exitCodes init() {
+        DATA* pd = new DATA();
+        return static_cast<e_exitCodes>(e_exitCodes::OK || !pd);
+    }
+
+    e_gameStates event() {
+        return e_gameStates::SCENE_NAME;
+    }
+
+    e_gameStates update() {
+        return e_gameStates::SCENE_NAME;
+    }
+
+    void render() {
+    }
+
+    void clean() {
+        delete pd;
+    }
+}
+
