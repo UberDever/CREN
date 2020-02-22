@@ -16,13 +16,12 @@ namespace cren
         e_exitCodes exitcode;
         if ((exitcode = init()) != e_exitCodes::OK)
             return exitcode;
-
         while (curState != e_gameStates::EXIT)
         {
-            e_gameStates newState = p_Scene[curState]->event();
-            newState = p_Scene[curState]->update();
+            e_gameStates newStateE = p_Scene[curState]->event();
+            e_gameStates newStateU = p_Scene[curState]->update();
             p_Scene[curState]->render();
-            curState = newState;
+            curState = (newStateE ^ curState) ? newStateE : newStateU;
         }
 
         clean();

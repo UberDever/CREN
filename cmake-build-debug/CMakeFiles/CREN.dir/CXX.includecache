@@ -6,6 +6,28 @@
 
 #IncludeRegexTransform: 
 
+../include/gut.hpp
+SDL.h
+-
+SDL_ttf.h
+-
+SDL_image.h
+-
+util.hpp
+../include/util.hpp
+res.hpp
+../include/res.hpp
+
+../include/res.hpp
+SDL.h
+-
+SDL_ttf.h
+-
+SDL_image.h
+-
+util.hpp
+../include/util.hpp
+
 ../include/util.hpp
 SDL.h
 -
@@ -14,9 +36,9 @@ cstdint
 iostream
 -
 
-/home/uberdever/dev/PRJS/CREN/src/util.cpp
-util.hpp
-/home/uberdever/dev/PRJS/CREN/src/util.hpp
+/home/uberdever/dev/PRJS/CREN/src/gut.cpp
+gut.hpp
+/home/uberdever/dev/PRJS/CREN/src/gut.hpp
 
 /usr/include/SDL2/SDL.h
 SDL_main.h
@@ -259,6 +281,16 @@ close_code.h
 /usr/include/SDL2/SDL_hints.h
 SDL_stdinc.h
 /usr/include/SDL2/SDL_stdinc.h
+begin_code.h
+/usr/include/SDL2/begin_code.h
+close_code.h
+/usr/include/SDL2/close_code.h
+
+/usr/include/SDL2/SDL_image.h
+SDL.h
+/usr/include/SDL2/SDL.h
+SDL_version.h
+/usr/include/SDL2/SDL_version.h
 begin_code.h
 /usr/include/SDL2/begin_code.h
 close_code.h
@@ -567,6 +599,14 @@ SDL_error.h
 /usr/include/SDL2/SDL_error.h
 SDL_video.h
 /usr/include/SDL2/SDL_video.h
+begin_code.h
+/usr/include/SDL2/begin_code.h
+close_code.h
+/usr/include/SDL2/close_code.h
+
+/usr/include/SDL2/SDL_ttf.h
+SDL.h
+/usr/include/SDL2/SDL.h
 begin_code.h
 /usr/include/SDL2/begin_code.h
 close_code.h

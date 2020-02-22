@@ -58,6 +58,7 @@ CMakeFiles/CREN.dir/src/cren.cpp.o: /usr/include/SDL2/begin_code.h
 CMakeFiles/CREN.dir/src/cren.cpp.o: /usr/include/SDL2/close_code.h
 
 CMakeFiles/CREN.dir/src/gut.cpp.o: ../include/gut.hpp
+CMakeFiles/CREN.dir/src/gut.cpp.o: ../include/res.hpp
 CMakeFiles/CREN.dir/src/gut.cpp.o: ../include/util.hpp
 CMakeFiles/CREN.dir/src/gut.cpp.o: ../src/gut.cpp
 CMakeFiles/CREN.dir/src/gut.cpp.o: /usr/include/SDL2/SDL.h
@@ -308,6 +309,8 @@ CMakeFiles/CREN.dir/src/s_exit.cpp.o: /usr/include/SDL2/SDL_video.h
 CMakeFiles/CREN.dir/src/s_exit.cpp.o: /usr/include/SDL2/begin_code.h
 CMakeFiles/CREN.dir/src/s_exit.cpp.o: /usr/include/SDL2/close_code.h
 
+CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: ../include/gut.hpp
+CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: ../include/res.hpp
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: ../include/s_gameplay.hpp
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: ../include/util.hpp
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: ../src/s_gameplay.cpp
@@ -327,6 +330,7 @@ CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_gamecontroller.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_gesture.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_haptic.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_hints.h
+CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_image.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_joystick.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_keyboard.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_keycode.h
@@ -351,6 +355,7 @@ CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_system.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_thread.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_timer.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_touch.h
+CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_ttf.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_version.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/SDL_video.h
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: /usr/include/SDL2/begin_code.h

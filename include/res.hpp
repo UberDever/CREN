@@ -18,8 +18,10 @@ namespace res
     e_exitCodes res_init();
     void res_clean();
 
-    SDL_Surface* load_PNG(const char* path);
-    TTF_Font* load_TTF(const char* path, int size);
+    TTF_Font* res_getFont(int size);
+
+    SDL_Surface* res_loadPNG(const char* path);
+    TTF_Font* res_loadTTF(const char* path, int size);
 }
 
 #endif //CREN_RES_HPP

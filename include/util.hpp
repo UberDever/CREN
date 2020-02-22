@@ -61,12 +61,14 @@ namespace util
     //custom event struct
     struct c_gameEvent
     {
-        uint32_t mstate;
-        int32_t mx, my; // mouse x and y coordinates
-        int32_t key;
+        int32_t mx, my; // mouse x and y coordinates (x coordinate is key pressed (sdl_event is union))
+        int32_t& key;
+        uint8_t mbutton, type;
 
-        c_gameEvent(): mx(0), my(0), mstate(0), key(0) {}
+        c_gameEvent(): mx(0), my(0), key(mx), mbutton(0), type(8) {}
     };
+
+    constexpr int SDL_ParseCount = 8;
 
     c_gameEvent parse_event(SDL_Event* event);
 }

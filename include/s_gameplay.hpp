@@ -6,10 +6,12 @@
 #define CREN_S_GAMEPLAY_HPP
 
 #include "util.hpp"
+#include "gut.hpp"
 
 namespace gameplay
 {
     using namespace util;
+    using namespace gut;
 
     class DATA
     {

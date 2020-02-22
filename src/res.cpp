@@ -10,16 +10,20 @@ namespace res
 
     TTF_Font* g_fontLib[fontNum] = {nullptr};
 
-    SDL_Surface *load_PNG(const char *path) {
+    SDL_Surface *res_loadPNG(const char *path) {
         SDL_Surface* tmp = nullptr;
         tmp = IMG_Load(path);
         return tmp;
     }
 
-    TTF_Font* load_TTF(const char *path, int size) {
+    TTF_Font* res_loadTTF(const char *path, int size) {
         TTF_Font* tmp = nullptr;
         tmp = TTF_OpenFont(path, size);
         return tmp;
+    }
+
+    TTF_Font *res_getFont(int size) {
+        return g_fontLib[size];
     }
 
     e_exitCodes res_init()
@@ -29,7 +33,7 @@ namespace res
         constexpr char* fontPath = "../data/fonts/font.ttf";
         for (int i = 0; i < fontNum; i++)
         {
-            g_fontLib[i] = load_TTF(fontPath, fontSizes[i]);
+            g_fontLib[i] = res_loadTTF(fontPath, fontSizes[i]);
             if (g_fontLib[i] == nullptr)
                 return e_exitCodes::RES_TTF_ERR;
         }

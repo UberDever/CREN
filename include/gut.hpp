@@ -10,13 +10,17 @@
 #include <SDL_image.h>
 
 #include "util.hpp"
+#include "res.hpp"
 
 namespace gut
 {
     using namespace util;
+    using namespace res;
 
     e_exitCodes gut_init();
     void gut_clean();
+
+    void gut_draw();
 
     SDL_Window* getW();
     SDL_Renderer* getR();
