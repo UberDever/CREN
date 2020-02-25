@@ -36,9 +36,9 @@ cstdint
 iostream
 -
 
-/home/uberdever/dev/PRJS/CREN/src/gut.cpp
+/home/tab/CLionProjects/CREN/src/gut.cpp
 gut.hpp
-/home/uberdever/dev/PRJS/CREN/src/gut.hpp
+/home/tab/CLionProjects/CREN/src/gut.hpp
 
 /usr/include/SDL2/SDL.h
 SDL_main.h

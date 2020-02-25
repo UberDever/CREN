@@ -4,15 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/uberdever/dev/PRJS/CREN/src/cren.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/cren.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/gut.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/gut.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/main.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/main.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/math.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/math.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/res.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/res.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/s_exit.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_exit.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/s_gameplay.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_gameplay.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/s_mainmenu.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o"
-  "/home/uberdever/dev/PRJS/CREN/src/util.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/util.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/cren.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/cren.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/gut.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/gut.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/main.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/main.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/math.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/math.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/res.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/res.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/s_exit.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_exit.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/s_gameplay.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_gameplay.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/s_mainmenu.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o"
+  "/home/tab/CLionProjects/CREN/src/util.cpp" "/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/util.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

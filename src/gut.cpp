@@ -23,13 +23,14 @@ namespace gut
     void _scale(int _w, int _h)
     {
         SDL_Surface* _surf = SDL_CreateRGBSurface(0, _w, _h, 32, 0, 0, 0, 0);
+        //SDL_Rect rect = {0, 0, _w, _h}; //Another way to scale the image
+        //SDL_BlitScaled(temp_surf, 0, _surf, &rect);
         int w = temp_surf->w;
         int h = temp_surf->h;
         int x_ratio = (int)((w << 16) / _w);
         int y_ratio = (int)((h << 16) / _h);
         uint32_t* pOut = static_cast<uint32_t *>(_surf->pixels);
         uint32_t* pIn = static_cast<uint32_t *>(temp_surf->pixels);
-
         for (int i = 0; i < _h; i++)
         {
             for (int j = 0; j < _w; j++)
@@ -39,6 +40,33 @@ namespace gut
                 pOut[(i * _w) + j] = pIn[(py * w) + px];
             }
         }
+        SDL_FreeSurface(temp_surf);
+        temp_surf = _surf;
+    }
+
+    void _persRight(int _w, int _h)
+    {
+        //000*******/
+        //0**00000**/
+        //0*******00/
+        //0**00000**/
+        //000*******/
+
+        SDL_Surface* _surf = SDL_CreateRGBSurface(0, _w, _h, 32, 0, 0, 0, 0);
+        int w = temp_surf->w;
+        int h = temp_surf->h;
+        int y_ratio = (int)((h << 16) / _h);
+        uint32_t* pOut = static_cast<uint32_t *>(_surf->pixels);
+        uint32_t* pIn = static_cast<uint32_t *>(temp_surf->pixels);
+        for (int i = 0; i < _w; i++)
+        {
+            for (int j = 0; j < _h; j++)
+            {
+                int py = (y_ratio * i) >> 16;
+                pOut[(i * _w) + j] = pIn[(py * w) + i];
+            }
+        }
+        SDL_FreeSurface(temp_surf);
         temp_surf = _surf;
     }
 
@@ -50,12 +78,13 @@ namespace gut
 
     void gut_draw()
     {
-        //static SDL_Texture* examTexture = SDL_CreateTextureFromSurface(g_rend, examSurf);
-        int w = 32;
-        int h = 32;
-        static SDL_Rect out = {0, 0, w, h};
+        int w = 128;
+        int h = 128;
         gut_transformSurf(temp_surf, w, h, 0);
-        SDL_RenderCopy(g_rend, SDL_CreateTextureFromSurface(g_rend, temp_surf), 0, &out);
+        SDL_Rect out = {0, 0, temp_surf->w, temp_surf->h};
+        SDL_Texture* outTex = SDL_CreateTextureFromSurface(g_rend, temp_surf);
+        SDL_RenderCopy(g_rend, outTex, 0, &out);
+        SDL_DestroyTexture(outTex);
         SDL_RenderPresent(g_rend);
     }
 

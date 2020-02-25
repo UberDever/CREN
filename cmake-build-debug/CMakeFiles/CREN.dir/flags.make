@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/uberdever/dev/PRJS/CREN/src -I/home/uberdever/dev/PRJS/CREN/include -I/usr/include/SDL2 
+CXX_INCLUDES = -I/home/tab/CLionProjects/CREN/src -I/home/tab/CLionProjects/CREN/include -I/usr/include/SDL2 
 
