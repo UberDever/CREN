@@ -6,10 +6,9 @@
 
 namespace gut
 {
+
     SDL_Window* g_wind;
     SDL_Renderer* g_rend;
-
-    void (*pTransformFunc[5])(int, int) = {nullptr}; //pointers to transform functions
 
     SDL_Surface* temp_surf = nullptr; //for global use in gut functions
 
@@ -20,72 +19,10 @@ namespace gut
 
     /************************************************************/
 
-    void _scale(int _w, int _h)
+    void gut_raycast()
     {
-        SDL_Surface* _surf = SDL_CreateRGBSurface(0, _w, _h, 32, 0, 0, 0, 0);
-        //SDL_Rect rect = {0, 0, _w, _h}; //Another way to scale the image
-        //SDL_BlitScaled(temp_surf, 0, _surf, &rect);
-        int w = temp_surf->w;
-        int h = temp_surf->h;
-        int x_ratio = (int)((w << 16) / _w);
-        int y_ratio = (int)((h << 16) / _h);
-        uint32_t* pOut = static_cast<uint32_t *>(_surf->pixels);
-        uint32_t* pIn = static_cast<uint32_t *>(temp_surf->pixels);
-        for (int i = 0; i < _h; i++)
-        {
-            for (int j = 0; j < _w; j++)
-            {
-                int px = (x_ratio * j) >> 16;
-                int py = (y_ratio * i) >> 16;
-                pOut[(i * _w) + j] = pIn[(py * w) + px];
-            }
-        }
-        SDL_FreeSurface(temp_surf);
-        temp_surf = _surf;
-    }
+        static Player& pl = getPlayer();
 
-    void _persRight(int _w, int _h)
-    {
-        //000*******/
-        //0**00000**/
-        //0*******00/
-        //0**00000**/
-        //000*******/
-
-        SDL_Surface* _surf = SDL_CreateRGBSurface(0, _w, _h, 32, 0, 0, 0, 0);
-        int w = temp_surf->w;
-        int h = temp_surf->h;
-        int y_ratio = (int)((h << 16) / _h);
-        uint32_t* pOut = static_cast<uint32_t *>(_surf->pixels);
-        uint32_t* pIn = static_cast<uint32_t *>(temp_surf->pixels);
-        for (int i = 0; i < _w; i++)
-        {
-            for (int j = 0; j < _h; j++)
-            {
-                int py = (y_ratio * i) >> 16;
-                pOut[(i * _w) + j] = pIn[(py * w) + i];
-            }
-        }
-        SDL_FreeSurface(temp_surf);
-        temp_surf = _surf;
-    }
-
-    SDL_Surface* gut_transformSurf(SDL_Surface* inSurf, int _w, int _h, uint8_t flag)
-    {
-        temp_surf = inSurf;
-        (*pTransformFunc[flag])(_w, _h);
-    }
-
-    void gut_draw()
-    {
-        int w = 128;
-        int h = 128;
-        gut_transformSurf(temp_surf, w, h, 0);
-        SDL_Rect out = {0, 0, temp_surf->w, temp_surf->h};
-        SDL_Texture* outTex = SDL_CreateTextureFromSurface(g_rend, temp_surf);
-        SDL_RenderCopy(g_rend, outTex, 0, &out);
-        SDL_DestroyTexture(outTex);
-        SDL_RenderPresent(g_rend);
     }
 
     /************************************************************/
@@ -101,17 +38,13 @@ namespace gut
         if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG)
             return e_exitCodes::GUT_IMG_ERR;
 
-        g_wind = SDL_CreateWindow("CREN", 0, 0, 320, 240, SDL_WINDOW_SHOWN);
+        g_wind = SDL_CreateWindow("CREN", 0, 0, cfg::scrW(), cfg::scrH(), SDL_WINDOW_SHOWN);
         if (g_wind == nullptr)
             return e_exitCodes::GUT_SDL_ERR;
 
         g_rend = SDL_CreateRenderer(g_wind, -1, SDL_RENDERER_SOFTWARE);
         if (g_rend == nullptr)
             return e_exitCodes::GUT_SDL_ERR;
-
-        pTransformFunc[0] = _scale;
-
-        temp_surf = res_loadPNG("../data/textures/wallHIRES.png");
 
         return e_exitCodes::OK;
     }

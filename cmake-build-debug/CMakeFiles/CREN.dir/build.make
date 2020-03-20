@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/103/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/107/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/103/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/107/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tab/CLionProjects/CREN
+CMAKE_SOURCE_DIR = /home/uberdever/dev/PRJS/CREN
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tab/CLionProjects/CREN/cmake-build-debug
+CMAKE_BINARY_DIR = /home/uberdever/dev/PRJS/CREN/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CREN.dir/depend.make
@@ -59,145 +59,145 @@ include CMakeFiles/CREN.dir/flags.make
 
 CMakeFiles/CREN.dir/src/main.cpp.o: CMakeFiles/CREN.dir/flags.make
 CMakeFiles/CREN.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CREN.dir/src/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/main.cpp.o -c /home/tab/CLionProjects/CREN/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CREN.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/main.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/main.cpp
 
 CMakeFiles/CREN.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/main.cpp > CMakeFiles/CREN.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/main.cpp > CMakeFiles/CREN.dir/src/main.cpp.i
 
 CMakeFiles/CREN.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/main.cpp -o CMakeFiles/CREN.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/main.cpp -o CMakeFiles/CREN.dir/src/main.cpp.s
 
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: CMakeFiles/CREN.dir/flags.make
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.o: ../src/s_gameplay.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CREN.dir/src/s_gameplay.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/s_gameplay.cpp.o -c /home/tab/CLionProjects/CREN/src/s_gameplay.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CREN.dir/src/s_gameplay.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/s_gameplay.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/s_gameplay.cpp
 
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/s_gameplay.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/s_gameplay.cpp > CMakeFiles/CREN.dir/src/s_gameplay.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/s_gameplay.cpp > CMakeFiles/CREN.dir/src/s_gameplay.cpp.i
 
 CMakeFiles/CREN.dir/src/s_gameplay.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/s_gameplay.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/s_gameplay.cpp -o CMakeFiles/CREN.dir/src/s_gameplay.cpp.s
-
-CMakeFiles/CREN.dir/src/math.cpp.o: CMakeFiles/CREN.dir/flags.make
-CMakeFiles/CREN.dir/src/math.cpp.o: ../src/math.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CREN.dir/src/math.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/math.cpp.o -c /home/tab/CLionProjects/CREN/src/math.cpp
-
-CMakeFiles/CREN.dir/src/math.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/math.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/math.cpp > CMakeFiles/CREN.dir/src/math.cpp.i
-
-CMakeFiles/CREN.dir/src/math.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/math.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/math.cpp -o CMakeFiles/CREN.dir/src/math.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/s_gameplay.cpp -o CMakeFiles/CREN.dir/src/s_gameplay.cpp.s
 
 CMakeFiles/CREN.dir/src/util.cpp.o: CMakeFiles/CREN.dir/flags.make
 CMakeFiles/CREN.dir/src/util.cpp.o: ../src/util.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CREN.dir/src/util.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/util.cpp.o -c /home/tab/CLionProjects/CREN/src/util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CREN.dir/src/util.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/util.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/util.cpp
 
 CMakeFiles/CREN.dir/src/util.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/util.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/util.cpp > CMakeFiles/CREN.dir/src/util.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/util.cpp > CMakeFiles/CREN.dir/src/util.cpp.i
 
 CMakeFiles/CREN.dir/src/util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/util.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/util.cpp -o CMakeFiles/CREN.dir/src/util.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/util.cpp -o CMakeFiles/CREN.dir/src/util.cpp.s
 
 CMakeFiles/CREN.dir/src/cren.cpp.o: CMakeFiles/CREN.dir/flags.make
 CMakeFiles/CREN.dir/src/cren.cpp.o: ../src/cren.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CREN.dir/src/cren.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/cren.cpp.o -c /home/tab/CLionProjects/CREN/src/cren.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CREN.dir/src/cren.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/cren.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/cren.cpp
 
 CMakeFiles/CREN.dir/src/cren.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/cren.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/cren.cpp > CMakeFiles/CREN.dir/src/cren.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/cren.cpp > CMakeFiles/CREN.dir/src/cren.cpp.i
 
 CMakeFiles/CREN.dir/src/cren.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/cren.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/cren.cpp -o CMakeFiles/CREN.dir/src/cren.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/cren.cpp -o CMakeFiles/CREN.dir/src/cren.cpp.s
 
 CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o: CMakeFiles/CREN.dir/flags.make
 CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o: ../src/s_mainmenu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o -c /home/tab/CLionProjects/CREN/src/s_mainmenu.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/s_mainmenu.cpp
 
 CMakeFiles/CREN.dir/src/s_mainmenu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/s_mainmenu.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/s_mainmenu.cpp > CMakeFiles/CREN.dir/src/s_mainmenu.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/s_mainmenu.cpp > CMakeFiles/CREN.dir/src/s_mainmenu.cpp.i
 
 CMakeFiles/CREN.dir/src/s_mainmenu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/s_mainmenu.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/s_mainmenu.cpp -o CMakeFiles/CREN.dir/src/s_mainmenu.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/s_mainmenu.cpp -o CMakeFiles/CREN.dir/src/s_mainmenu.cpp.s
 
 CMakeFiles/CREN.dir/src/s_exit.cpp.o: CMakeFiles/CREN.dir/flags.make
 CMakeFiles/CREN.dir/src/s_exit.cpp.o: ../src/s_exit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CREN.dir/src/s_exit.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/s_exit.cpp.o -c /home/tab/CLionProjects/CREN/src/s_exit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CREN.dir/src/s_exit.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/s_exit.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/s_exit.cpp
 
 CMakeFiles/CREN.dir/src/s_exit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/s_exit.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/s_exit.cpp > CMakeFiles/CREN.dir/src/s_exit.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/s_exit.cpp > CMakeFiles/CREN.dir/src/s_exit.cpp.i
 
 CMakeFiles/CREN.dir/src/s_exit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/s_exit.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/s_exit.cpp -o CMakeFiles/CREN.dir/src/s_exit.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/s_exit.cpp -o CMakeFiles/CREN.dir/src/s_exit.cpp.s
 
 CMakeFiles/CREN.dir/src/gut.cpp.o: CMakeFiles/CREN.dir/flags.make
 CMakeFiles/CREN.dir/src/gut.cpp.o: ../src/gut.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CREN.dir/src/gut.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/gut.cpp.o -c /home/tab/CLionProjects/CREN/src/gut.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CREN.dir/src/gut.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/gut.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/gut.cpp
 
 CMakeFiles/CREN.dir/src/gut.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/gut.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/gut.cpp > CMakeFiles/CREN.dir/src/gut.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/gut.cpp > CMakeFiles/CREN.dir/src/gut.cpp.i
 
 CMakeFiles/CREN.dir/src/gut.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/gut.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/gut.cpp -o CMakeFiles/CREN.dir/src/gut.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/gut.cpp -o CMakeFiles/CREN.dir/src/gut.cpp.s
 
-CMakeFiles/CREN.dir/src/res.cpp.o: CMakeFiles/CREN.dir/flags.make
-CMakeFiles/CREN.dir/src/res.cpp.o: ../src/res.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CREN.dir/src/res.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/res.cpp.o -c /home/tab/CLionProjects/CREN/src/res.cpp
+CMakeFiles/CREN.dir/src/game.cpp.o: CMakeFiles/CREN.dir/flags.make
+CMakeFiles/CREN.dir/src/game.cpp.o: ../src/game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CREN.dir/src/game.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/game.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/game.cpp
 
-CMakeFiles/CREN.dir/src/res.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/res.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tab/CLionProjects/CREN/src/res.cpp > CMakeFiles/CREN.dir/src/res.cpp.i
+CMakeFiles/CREN.dir/src/game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/game.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/game.cpp > CMakeFiles/CREN.dir/src/game.cpp.i
 
-CMakeFiles/CREN.dir/src/res.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/res.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tab/CLionProjects/CREN/src/res.cpp -o CMakeFiles/CREN.dir/src/res.cpp.s
+CMakeFiles/CREN.dir/src/game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/game.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/game.cpp -o CMakeFiles/CREN.dir/src/game.cpp.s
+
+CMakeFiles/CREN.dir/src/s_temp.cpp.o: CMakeFiles/CREN.dir/flags.make
+CMakeFiles/CREN.dir/src/s_temp.cpp.o: ../src/s_temp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CREN.dir/src/s_temp.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CREN.dir/src/s_temp.cpp.o -c /home/uberdever/dev/PRJS/CREN/src/s_temp.cpp
+
+CMakeFiles/CREN.dir/src/s_temp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CREN.dir/src/s_temp.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/uberdever/dev/PRJS/CREN/src/s_temp.cpp > CMakeFiles/CREN.dir/src/s_temp.cpp.i
+
+CMakeFiles/CREN.dir/src/s_temp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CREN.dir/src/s_temp.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/uberdever/dev/PRJS/CREN/src/s_temp.cpp -o CMakeFiles/CREN.dir/src/s_temp.cpp.s
 
 # Object files for target CREN
 CREN_OBJECTS = \
 "CMakeFiles/CREN.dir/src/main.cpp.o" \
 "CMakeFiles/CREN.dir/src/s_gameplay.cpp.o" \
-"CMakeFiles/CREN.dir/src/math.cpp.o" \
 "CMakeFiles/CREN.dir/src/util.cpp.o" \
 "CMakeFiles/CREN.dir/src/cren.cpp.o" \
 "CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o" \
 "CMakeFiles/CREN.dir/src/s_exit.cpp.o" \
 "CMakeFiles/CREN.dir/src/gut.cpp.o" \
-"CMakeFiles/CREN.dir/src/res.cpp.o"
+"CMakeFiles/CREN.dir/src/game.cpp.o" \
+"CMakeFiles/CREN.dir/src/s_temp.cpp.o"
 
 # External object files for target CREN
 CREN_EXTERNAL_OBJECTS =
 
 CREN: CMakeFiles/CREN.dir/src/main.cpp.o
 CREN: CMakeFiles/CREN.dir/src/s_gameplay.cpp.o
-CREN: CMakeFiles/CREN.dir/src/math.cpp.o
 CREN: CMakeFiles/CREN.dir/src/util.cpp.o
 CREN: CMakeFiles/CREN.dir/src/cren.cpp.o
 CREN: CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o
 CREN: CMakeFiles/CREN.dir/src/s_exit.cpp.o
 CREN: CMakeFiles/CREN.dir/src/gut.cpp.o
-CREN: CMakeFiles/CREN.dir/src/res.cpp.o
+CREN: CMakeFiles/CREN.dir/src/game.cpp.o
+CREN: CMakeFiles/CREN.dir/src/s_temp.cpp.o
 CREN: CMakeFiles/CREN.dir/build.make
 CREN: /usr/lib/x86_64-linux-gnu/libSDL2main.a
 CREN: /usr/lib/x86_64-linux-gnu/libSDL2.so
@@ -205,7 +205,7 @@ CREN: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
 CREN: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
 CREN: /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so
 CREN: CMakeFiles/CREN.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable CREN"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable CREN"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CREN.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -218,6 +218,6 @@ CMakeFiles/CREN.dir/clean:
 .PHONY : CMakeFiles/CREN.dir/clean
 
 CMakeFiles/CREN.dir/depend:
-	cd /home/tab/CLionProjects/CREN/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tab/CLionProjects/CREN /home/tab/CLionProjects/CREN /home/tab/CLionProjects/CREN/cmake-build-debug /home/tab/CLionProjects/CREN/cmake-build-debug /home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/CREN.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/uberdever/dev/PRJS/CREN/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/uberdever/dev/PRJS/CREN /home/uberdever/dev/PRJS/CREN /home/uberdever/dev/PRJS/CREN/cmake-build-debug /home/uberdever/dev/PRJS/CREN/cmake-build-debug /home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/CREN.dir/depend
 

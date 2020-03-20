@@ -6,18 +6,13 @@
 #define CREN_S_GAMEPLAY_HPP
 
 #include "util.hpp"
+#include "game.hpp"
 #include "gut.hpp"
 
 namespace gameplay
 {
     using namespace util;
     using namespace gut;
-
-    class DATA
-    {
-    public:
-        ~DATA() {}
-    };
 
     e_exitCodes init();
     e_gameStates event();

@@ -1,14 +1,13 @@
 //
-// Created by uberdever on 19.02.2020.
+// Created by uberdever on 18.03.2020.
 //
 
-#ifndef CREN_S_MAINMENU_HPP
-#define CREN_S_MAINMENU_HPP
+#ifndef CREN_S_TEMP_HPP
+#define CREN_S_TEMP_HPP
 
 #include "util.hpp"
-#include "gut.hpp"
 
-namespace mainmenu
+namespace temp
 {
     using namespace util;
 
@@ -19,5 +18,4 @@ namespace mainmenu
     void clean();
 }
 
-
-#endif //CREN_S_MAINMENU_HPP
+#endif //CREN_S_TEMP_HPP

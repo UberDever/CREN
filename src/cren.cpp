@@ -7,34 +7,35 @@
 namespace cren
 {
     //game cycle vars
-    e_gameStates curState = e_gameStates::GAMEPLAY;
+    e_gameStates curState = GAMEPLAY;
     Scene* p_Scene[SCENE_NUM] = {nullptr};
 
     //main block (definition)
     e_exitCodes exec()
     {
         e_exitCodes exitcode;
-        if ((exitcode = init()) != e_exitCodes::OK)
+        if ((exitcode = init()) != OK)
             return exitcode;
-        while (curState != e_gameStates::EXIT)
+        while (curState != EXIT)
         {
-            e_gameStates newStateE = p_Scene[curState]->event();
-            e_gameStates newStateU = p_Scene[curState]->update();
+            curState = global::nextState();
+            curState = p_Scene[curState]->event();
+            curState = p_Scene[curState]->update();
             p_Scene[curState]->render();
-            curState = (newStateE ^ curState) ? newStateE : newStateU;
         }
 
         clean();
 
-        return e_exitCodes::OK;
+        return OK;
     };
 
     e_exitCodes init()
     {
-        e_exitCodes exitCode = e_exitCodes::OK;
+        e_exitCodes exitCode = OK;
         exitCode = static_cast<e_exitCodes>(exitCode | math_init());
         exitCode = static_cast<e_exitCodes>(exitCode | gut_init());
         exitCode = static_cast<e_exitCodes>(exitCode | res_init());
+        exitCode = static_cast<e_exitCodes>(exitCode | game_init());
 
         s_init();
 
@@ -45,9 +46,10 @@ namespace cren
 
         res_clean();
         gut_clean();
+        game_clean();
 
-        for (int i = 0; i < SCENE_NUM; ++i) {
-            delete p_Scene[i];
+        for (auto & i : p_Scene) {
+            delete i;
         }
     }
 
@@ -58,5 +60,7 @@ namespace cren
         p_Scene[MAIN_MENU]->init_scene(mainmenu::init, mainmenu::event, mainmenu::update, mainmenu::render, mainmenu::clean);
         p_Scene[GAMEPLAY] = new Scene();
         p_Scene[GAMEPLAY]->init_scene(gameplay::init, gameplay::event, gameplay::update, gameplay::render, gameplay::clean);
+        p_Scene[TEMP] = new Scene();
+        p_Scene[TEMP]->init_scene(temp::init, temp::event, temp::update, temp::render, temp::clean);
     }
 }

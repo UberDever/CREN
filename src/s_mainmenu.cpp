@@ -6,7 +6,6 @@
 
 namespace mainmenu
 {
-    DATA* pd;
     e_gameStates (*pEventCases[SDL_ParseCount + 1])() = {nullptr};
 
     /************************************************************/
@@ -24,7 +23,7 @@ namespace mainmenu
     e_gameStates event() {
         SDL_Event rawEvent;
         SDL_WaitEvent(&rawEvent);
-        c_gameEvent event = parse_event(&rawEvent);
+        GameEvent event = parse_event(&rawEvent);
         return (*pEventCases[event.type])();;
     }
 
@@ -42,7 +41,6 @@ namespace mainmenu
     /************************************************************/
 
     e_exitCodes init() {
-        DATA* pd = new DATA();
 
         pEventCases[0] = onExit;
         pEventCases[1] = onWindowEvent;
@@ -54,12 +52,11 @@ namespace mainmenu
         pEventCases[7] = onMouseWheel;
         pEventCases[8] = onNothing;
 
-        return static_cast<e_exitCodes>(e_exitCodes::OK | !pd);
+        return OK;
     }
 
     /************************************************************/
 
     void clean() {
-        delete pd;
     }
 }

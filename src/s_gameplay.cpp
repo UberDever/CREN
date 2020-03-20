@@ -6,44 +6,42 @@
 
 namespace gameplay
 {
-    DATA* pd;
     e_gameStates (*pEventCases[SDL_ParseCount + 1])() = {nullptr};
 
     /************************************************************/
 
-    e_gameStates _onExit() { return e_gameStates::EXIT; }
-    e_gameStates _onWindowEvent() { return e_gameStates::GAMEPLAY; }
-    e_gameStates _onKeyDown() { return e_gameStates::GAMEPLAY; }
-    e_gameStates _onKeyUp() { return e_gameStates::GAMEPLAY; }
-    e_gameStates _onMouseMotion() { return e_gameStates::GAMEPLAY; }
-    e_gameStates _onMouseButtonDown() { return e_gameStates::GAMEPLAY; }
-    e_gameStates _onMouseButtonUp() { return e_gameStates::GAMEPLAY; }
-    e_gameStates _onMouseWheel() { return e_gameStates::GAMEPLAY; }
-    e_gameStates _onNothing() { return e_gameStates::GAMEPLAY; }
+    e_gameStates _onExit() { return EXIT; }
+    e_gameStates _onWindowEvent() { return GAMEPLAY; }
+    e_gameStates _onKeyDown() { return GAMEPLAY; }
+    e_gameStates _onKeyUp() { return GAMEPLAY; }
+    e_gameStates _onMouseMotion() { return GAMEPLAY; }
+    e_gameStates _onMouseButtonDown() { return GAMEPLAY; }
+    e_gameStates _onMouseButtonUp() { return GAMEPLAY; }
+    e_gameStates _onMouseWheel() { return GAMEPLAY; }
+    e_gameStates _onNothing() { return GAMEPLAY; }
 
     e_gameStates event() {
         SDL_Event rawEvent;
         SDL_WaitEvent(&rawEvent);
-        c_gameEvent event = parse_event(&rawEvent);
+        GameEvent event = parse_event(&rawEvent);
         return (*pEventCases[event.type])();;
     }
 
     /************************************************************/
 
     e_gameStates update() {
-        return e_gameStates::GAMEPLAY;
+        return GAMEPLAY;
     }
 
     /************************************************************/
 
     void render() {
-        gut_draw();
+        gut_raycast();
     }
 
     /************************************************************/
 
     e_exitCodes init() {
-        DATA* pd = new DATA();
 
         pEventCases[0] = _onExit;
         pEventCases[1] = _onWindowEvent;
@@ -55,13 +53,16 @@ namespace gameplay
         pEventCases[7] = _onMouseWheel;
         pEventCases[8] = _onNothing;
 
-        return static_cast<e_exitCodes>(e_exitCodes::OK | !pd);
+        v2<double> vec1  {0.1, 0.5};
+        v2<double> vec2  {4.2, 3.6};
+        std::cout << vec1.norm2() << '\n' << vec1 << '\n' << vec2 << std::endl;
+
+        return OK;
     }
 
     /************************************************************/
 
     void clean() {
-        delete pd;
     }
 }
 

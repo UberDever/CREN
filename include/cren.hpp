@@ -5,12 +5,12 @@
 #ifndef CREN_CREN_H
 #define CREN_CREN_H
 
-#include "math.hpp"
 #include "util.hpp"
 #include "gut.hpp"
-#include "res.hpp"
+#include "game.hpp"
 
 #include "s_exit.hpp"
+#include "s_temp.hpp"
 #include "s_mainmenu.hpp"
 #include "s_gameplay.hpp"
 
@@ -21,9 +21,10 @@ namespace cren
     using namespace gut;
     using namespace util;
     using namespace res;
+    using namespace game;
 
     //defined vars
-    constexpr int SCENE_NUM = 3;
+    constexpr int SCENE_NUM = 4;
 
     //main block (declaration)
     e_exitCodes exec();

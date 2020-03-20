@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/103/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /snap/clion/107/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/103/bin/cmake/linux/bin/cmake -E remove -f
+RM = /snap/clion/107/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tab/CLionProjects/CREN
+CMAKE_SOURCE_DIR = /home/uberdever/dev/PRJS/CREN
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tab/CLionProjects/CREN/cmake-build-debug
+CMAKE_BINARY_DIR = /home/uberdever/dev/PRJS/CREN/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/tab/CLionProjects/CREN/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/103/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/snap/clion/107/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/103/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/snap/clion/107/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles /home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles /home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tab/CLionProjects/CREN/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -150,6 +150,33 @@ src/cren.cpp.s:
 	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/cren.cpp.s
 .PHONY : src/cren.cpp.s
 
+src/game.o: src/game.cpp.o
+
+.PHONY : src/game.o
+
+# target to build an object file
+src/game.cpp.o:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/game.cpp.o
+.PHONY : src/game.cpp.o
+
+src/game.i: src/game.cpp.i
+
+.PHONY : src/game.i
+
+# target to preprocess a source file
+src/game.cpp.i:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/game.cpp.i
+.PHONY : src/game.cpp.i
+
+src/game.s: src/game.cpp.s
+
+.PHONY : src/game.s
+
+# target to generate assembly for a file
+src/game.cpp.s:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/game.cpp.s
+.PHONY : src/game.cpp.s
+
 src/gut.o: src/gut.cpp.o
 
 .PHONY : src/gut.o
@@ -203,60 +230,6 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/math.o: src/math.cpp.o
-
-.PHONY : src/math.o
-
-# target to build an object file
-src/math.cpp.o:
-	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/math.cpp.o
-.PHONY : src/math.cpp.o
-
-src/math.i: src/math.cpp.i
-
-.PHONY : src/math.i
-
-# target to preprocess a source file
-src/math.cpp.i:
-	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/math.cpp.i
-.PHONY : src/math.cpp.i
-
-src/math.s: src/math.cpp.s
-
-.PHONY : src/math.s
-
-# target to generate assembly for a file
-src/math.cpp.s:
-	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/math.cpp.s
-.PHONY : src/math.cpp.s
-
-src/res.o: src/res.cpp.o
-
-.PHONY : src/res.o
-
-# target to build an object file
-src/res.cpp.o:
-	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/res.cpp.o
-.PHONY : src/res.cpp.o
-
-src/res.i: src/res.cpp.i
-
-.PHONY : src/res.i
-
-# target to preprocess a source file
-src/res.cpp.i:
-	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/res.cpp.i
-.PHONY : src/res.cpp.i
-
-src/res.s: src/res.cpp.s
-
-.PHONY : src/res.s
-
-# target to generate assembly for a file
-src/res.cpp.s:
-	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/res.cpp.s
-.PHONY : src/res.cpp.s
 
 src/s_exit.o: src/s_exit.cpp.o
 
@@ -339,6 +312,33 @@ src/s_mainmenu.cpp.s:
 	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/s_mainmenu.cpp.s
 .PHONY : src/s_mainmenu.cpp.s
 
+src/s_temp.o: src/s_temp.cpp.o
+
+.PHONY : src/s_temp.o
+
+# target to build an object file
+src/s_temp.cpp.o:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/s_temp.cpp.o
+.PHONY : src/s_temp.cpp.o
+
+src/s_temp.i: src/s_temp.cpp.i
+
+.PHONY : src/s_temp.i
+
+# target to preprocess a source file
+src/s_temp.cpp.i:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/s_temp.cpp.i
+.PHONY : src/s_temp.cpp.i
+
+src/s_temp.s: src/s_temp.cpp.s
+
+.PHONY : src/s_temp.s
+
+# target to generate assembly for a file
+src/s_temp.cpp.s:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/s_temp.cpp.s
+.PHONY : src/s_temp.cpp.s
+
 src/util.o: src/util.cpp.o
 
 .PHONY : src/util.o
@@ -378,18 +378,15 @@ help:
 	@echo "... src/cren.o"
 	@echo "... src/cren.i"
 	@echo "... src/cren.s"
+	@echo "... src/game.o"
+	@echo "... src/game.i"
+	@echo "... src/game.s"
 	@echo "... src/gut.o"
 	@echo "... src/gut.i"
 	@echo "... src/gut.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/math.o"
-	@echo "... src/math.i"
-	@echo "... src/math.s"
-	@echo "... src/res.o"
-	@echo "... src/res.i"
-	@echo "... src/res.s"
 	@echo "... src/s_exit.o"
 	@echo "... src/s_exit.i"
 	@echo "... src/s_exit.s"
@@ -399,6 +396,9 @@ help:
 	@echo "... src/s_mainmenu.o"
 	@echo "... src/s_mainmenu.i"
 	@echo "... src/s_mainmenu.s"
+	@echo "... src/s_temp.o"
+	@echo "... src/s_temp.i"
+	@echo "... src/s_temp.s"
 	@echo "... src/util.o"
 	@echo "... src/util.i"
 	@echo "... src/util.s"
