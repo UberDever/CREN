@@ -123,6 +123,33 @@ CREN/fast:
 	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/build
 .PHONY : CREN/fast
 
+src/UI.o: src/UI.cpp.o
+
+.PHONY : src/UI.o
+
+# target to build an object file
+src/UI.cpp.o:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/UI.cpp.o
+.PHONY : src/UI.cpp.o
+
+src/UI.i: src/UI.cpp.i
+
+.PHONY : src/UI.i
+
+# target to preprocess a source file
+src/UI.cpp.i:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/UI.cpp.i
+.PHONY : src/UI.cpp.i
+
+src/UI.s: src/UI.cpp.s
+
+.PHONY : src/UI.s
+
+# target to generate assembly for a file
+src/UI.cpp.s:
+	$(MAKE) -f CMakeFiles/CREN.dir/build.make CMakeFiles/CREN.dir/src/UI.cpp.s
+.PHONY : src/UI.cpp.s
+
 src/cren.o: src/cren.cpp.o
 
 .PHONY : src/cren.o
@@ -375,6 +402,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... CREN"
 	@echo "... edit_cache"
+	@echo "... src/UI.o"
+	@echo "... src/UI.i"
+	@echo "... src/UI.s"
 	@echo "... src/cren.o"
 	@echo "... src/cren.i"
 	@echo "... src/cren.s"

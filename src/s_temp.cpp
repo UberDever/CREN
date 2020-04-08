@@ -18,7 +18,7 @@ namespace temp
         return e_gameStates::TEMP;
     }
 
-    void render() {
+    void render(float) {
 
     }
 

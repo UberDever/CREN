@@ -90,6 +90,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/uberdever/dev/PRJS/CREN/include/UI.hpp">
+			<Option target="CREN"/>
+		</Unit>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/include/cren.hpp">
 			<Option target="CREN"/>
 		</Unit>
@@ -112,6 +115,9 @@
 			<Option target="CREN"/>
 		</Unit>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/include/util.hpp">
+			<Option target="CREN"/>
+		</Unit>
+		<Unit filename="/home/uberdever/dev/PRJS/CREN/src/UI.cpp">
 			<Option target="CREN"/>
 		</Unit>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/src/cren.cpp">

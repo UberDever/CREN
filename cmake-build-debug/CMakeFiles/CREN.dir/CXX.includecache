@@ -6,29 +6,9 @@
 
 #IncludeRegexTransform: 
 
-../include/game.hpp
+../include/UI.hpp
 util.hpp
 ../include/util.hpp
-
-../include/gut.hpp
-util.hpp
-../include/util.hpp
-game.hpp
-../include/game.hpp
-
-../include/s_gameplay.hpp
-util.hpp
-../include/util.hpp
-game.hpp
-../include/game.hpp
-gut.hpp
-../include/gut.hpp
-
-../include/s_mainmenu.hpp
-util.hpp
-../include/util.hpp
-gut.hpp
-../include/gut.hpp
 
 ../include/util.hpp
 SDL.h
@@ -37,20 +17,16 @@ SDL_ttf.h
 -
 SDL_image.h
 -
-cstdint
+fstream
 -
 iostream
 -
 cmath
 -
 
-/home/uberdever/dev/PRJS/CREN/src/s_gameplay.cpp
-s_gameplay.hpp
-/home/uberdever/dev/PRJS/CREN/src/s_gameplay.hpp
-
-/home/uberdever/dev/PRJS/CREN/src/s_mainmenu.cpp
-s_mainmenu.hpp
-/home/uberdever/dev/PRJS/CREN/src/s_mainmenu.hpp
+/home/uberdever/dev/PRJS/CREN/src/UI.cpp
+UI.hpp
+/home/uberdever/dev/PRJS/CREN/src/UI.hpp
 
 /usr/include/SDL2/SDL.h
 SDL_main.h

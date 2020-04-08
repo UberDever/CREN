@@ -11,11 +11,13 @@
 namespace mainmenu
 {
     using namespace util;
+    using namespace gut;
+    using namespace game;
 
     e_exitCodes init();
     e_gameStates event();
     e_gameStates update();
-    void render();
+    void render(float);
     void clean();
 }
 

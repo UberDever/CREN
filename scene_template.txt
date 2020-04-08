@@ -43,7 +43,7 @@ namespace SCENE_NAME
    e_gameStates event() {
        SDL_Event rawEvent;
        SDL_WaitEvent(&rawEvent);
-       GameEvent event = parse_event(&rawEvent);
+       GAMEEVENT event = parse_event(&rawEvent);
        return (*pEventCases[event.type])();;
    }
 

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/uberdever/dev/PRJS/CREN/src/UI.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/UI.cpp.o"
   "/home/uberdever/dev/PRJS/CREN/src/cren.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/cren.cpp.o"
   "/home/uberdever/dev/PRJS/CREN/src/game.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/game.cpp.o"
   "/home/uberdever/dev/PRJS/CREN/src/gut.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/gut.cpp.o"

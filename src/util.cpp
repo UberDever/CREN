@@ -6,28 +6,42 @@
 
 namespace cfg
 {
-    uint32_t _scrW = 640;
-    uint32_t _scrH = 480;
-
-    uint32_t scrW() {return _scrW;}
-    uint32_t scrH() {return _scrH;}
+    CFG &getCFG() {
+        static CFG g_cfg;
+        return g_cfg;
+    }
 }
+
 
 namespace util
 {
-    GameEvent parse_event(SDL_Event* event)
+    void parse_event(SDL_Event* rawEvent, GAMEEVENT* gameEvent)
     {
         static uint32_t eventCodes[SDL_ParseCount] = {SDL_QUIT, SDL_WINDOWEVENT, SDL_KEYDOWN, SDL_KEYUP, SDL_MOUSEMOTION,
                                   SDL_MOUSEBUTTONDOWN, SDL_MOUSEBUTTONUP, SDL_MOUSEWHEEL};
-        int index = 0;
-        for (; index < SDL_ParseCount && (event->type ^ eventCodes[index]); index++);
-        GameEvent parsedEvent;
-        parsedEvent.mx = event->motion.x;
-        parsedEvent.my = event->motion.y;
-        parsedEvent.mbutton = event->button.button;
-        parsedEvent.type = index;
-        return parsedEvent;
-        //std::cout << index << " " << parsedEvent.key << " " << parsedEvent.my << " " << parsedEvent.mx << " " << (uint32_t)parsedEvent.mbutton << std::endl;
+        uint8_t index = 0;
+        for (; index < SDL_ParseCount && (rawEvent->type ^ eventCodes[index]); index++);
+        gameEvent->mx = rawEvent->motion.x;
+        gameEvent->my = rawEvent->motion.y;
+        gameEvent->mxRel = rawEvent->motion.xrel;
+        gameEvent->myRel = rawEvent->motion.yrel;
+        gameEvent->mbutton = rawEvent->button.button;
+        gameEvent->type = index;
+        //std::cout << index << " " << gameEvent->key << " " << gameEvent->my << " " << gameEvent->mx << " " << (uint32_t)gameEvent->mbutton << " " << rawEvent->motion.xrel << std::endl;
+    }
+
+    long long hashStr(const char* str)
+    {
+        constexpr int p = 31;
+        constexpr int m = 1e9 + 9;
+        long long hash = 0;
+        long long p_pow = 1;
+        for (int i = 0; str[i] != 0; i++)
+    {
+        hash = (hash + (str[i] - 'a' + 1) * p_pow) % m;
+        p_pow = (p_pow * p) % m;
+    }
+    return hash;
     }
 }
 
@@ -37,8 +51,10 @@ namespace res
     /*DATA*/
     /************************************************************/
 
-    constexpr int fontNum = 4;
-    TTF_Font* g_fontLib[fontNum] = {nullptr};
+    constexpr uint32_t fontNum = 4;
+    constexpr uint32_t fontTypes = 3;
+    TTF_Font* g_fontLib[fontNum][fontTypes] = {nullptr};
+    char* fontNames[fontTypes];
 
     /*FUNCTIONS*/
     /************************************************************/
@@ -50,14 +66,23 @@ namespace res
         return tmp;
     }
 
-    TTF_Font* res_loadTTF(const char *path, int size) {
+    TTF_Font* res_loadTTF(const char *path, uint32_t size) {
         TTF_Font* tmp = nullptr;
         tmp = TTF_OpenFont(path, size);
         return tmp;
     }
 
-    TTF_Font *res_getFont(int size) {
-        return g_fontLib[size];
+    TTF_Font *res_getFont(uint32_t size, uint32_t type) {
+        return g_fontLib[size][type];
+    }
+
+    uint32_t res_getFontType(const char* name)
+    {
+        uint32_t i = 0;
+        while (strcmp(fontNames[i], name) != 0 && i < fontTypes) {i++;}
+        if (i == fontTypes)
+            return (uint32_t)-1;
+        return i;
     }
 
     /************************************************************/
@@ -67,11 +92,18 @@ namespace res
         //resource setup
         //font part
         int fontSizes[fontNum] = {18, 24, 32, 48};
-        constexpr char* fontPath = "../data/fonts/font.ttf";
+        char path[100] = "../data/fonts/";
+        uint32_t term = strlen(path);
+        fontNames[0] = "font.ttf";
+        fontNames[1] = "font.ttf";
+        fontNames[2] = "font.ttf";
+
         for (int i = 0; i < fontNum; i++)
+            for (int j = 0; j < fontTypes; j++)
         {
-            g_fontLib[i] = res_loadTTF(fontPath, fontSizes[i]);
-            if (g_fontLib[i] == nullptr)
+            g_fontLib[i][j] = res_loadTTF(strcat(path, fontNames[j]), fontSizes[i]);
+            path[term] = 0;
+            if (g_fontLib[i][j] == nullptr)
                 return e_exitCodes::RES_TTF_ERR;
         }
 
@@ -81,20 +113,25 @@ namespace res
     }
 
     void res_clean() {
-        for (auto & i : g_fontLib)
-        {
-            TTF_CloseFont(i);
-        }
+        for (auto &i : g_fontLib)
+            for (auto &j: i)
+                TTF_CloseFont(j);
     }
 }
 
 
 namespace math
 {
-    constexpr float PI = 3.14159265;
+    e_exitCodes math_init()
+    {
+        return OK;
+    }
+}
 
-    float sin[360] = {};
-    float cos[360] = {};
+/*namespace math
+{
+    float g_sin[360] = {};
+    float g_cos[360] = {};
 
     void calc_trig(float beta, float* s, float* c)
     {
@@ -128,7 +165,7 @@ namespace math
         float& cosine = *c;
         int32_t j;
 
-        beta = beta * PI / 180;
+        beta = beta * util::PI / 180;
 
         sine = 0;
         cosine = 1.0;
@@ -183,16 +220,27 @@ namespace math
         {
             float s, c;
             calc_trig(i, &s, &c);
-            sin[i] = s;
-            cos[i] = c;
-            sin[i + 90] = c;
-            cos[i + 90] = -s;
-            sin[i + 180] = -s;
-            cos[i + 180] = -c;
-            sin[i + 270] = -c;
-            cos[i + 270] = s;
+            g_sin[i] = s;
+            g_cos[i] = c;
+            g_sin[i + 90] = c;
+            g_cos[i + 90] = -s;
+            g_sin[i + 180] = -s;
+            g_cos[i + 180] = -c;
+            g_sin[i + 270] = -c;
+            g_cos[i + 270] = s;
         }
 
         return util::e_exitCodes::OK;
     }
-}
+
+    float my_sin(float ang) {
+        int sign;
+        ang > 0 ? sign = 1 : sign = -1, ang = -ang;
+        return (float)sign * g_sin[(int)ang];
+    }
+
+    float my_cos(float ang) {
+        ang = abs(ang);
+        return g_cos[(int)ang];
+    }
+}*/

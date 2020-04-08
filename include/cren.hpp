@@ -8,6 +8,7 @@
 #include "util.hpp"
 #include "gut.hpp"
 #include "game.hpp"
+#include "UI.hpp"
 
 #include "s_exit.hpp"
 #include "s_temp.hpp"
@@ -17,11 +18,12 @@
 namespace cren
 {
     //namespaces
-    using namespace math;
+    //using namespace math;
     using namespace gut;
     using namespace util;
     using namespace res;
     using namespace game;
+    using namespace UI;
 
     //defined vars
     constexpr int SCENE_NUM = 4;

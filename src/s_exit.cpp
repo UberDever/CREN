@@ -18,7 +18,7 @@ namespace Void
         return e_gameStates::EXIT;
     }
 
-    void render() {
+    void render(float) {
 
     }
 

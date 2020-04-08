@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/CREN.dir/src/UI.cpp.o"
   "CMakeFiles/CREN.dir/src/cren.cpp.o"
   "CMakeFiles/CREN.dir/src/game.cpp.o"
   "CMakeFiles/CREN.dir/src/gut.cpp.o"

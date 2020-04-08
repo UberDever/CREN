@@ -14,7 +14,7 @@ namespace Void
     e_exitCodes init();
     e_gameStates event();
     e_gameStates update();
-    void render();
+    void render(float);
     void clean();
 }
 

@@ -8,11 +8,13 @@
 #include "util.hpp"
 #include "game.hpp"
 
+//gut - contains all graphic related utilities
 namespace gut
 {
     using namespace util;
     using namespace res;
-    using namespace game;
+    using namespace math;
+    using namespace cfg;
 
     e_exitCodes gut_init();
     void gut_clean();
