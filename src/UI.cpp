@@ -22,7 +22,7 @@ namespace UI
 
     e_exitCodes parseUI() //It is real fully-functional xml parser!
     {
-        constexpr char* confPath = "../data/cfg/ui.conf";
+        constexpr char* confPath = "../data/cfg/ui.xml";
         constexpr uint32_t tokenLen = 100;           //Length of token
         constexpr uint32_t depthLen = 10;           //Depth of token recursion
         constexpr uint32_t dataLen = UITextLen;            //Length of data
@@ -43,10 +43,7 @@ namespace UI
             while (fscanf(in, "<%[^>]s", token) == 0)
             {
                 data[dataIndex] = (char)getc(in);
-                if (data[dataIndex] == '#')
-                {
-                    fscanf(in, "%*[^\n]\n");
-                }
+                if (data[dataIndex] == '#') {fscanf(in, "%*[^\n]\n");}
                 dataIndex = (dataIndex + 1) % dataLen;
             }
             data[dataIndex] = 0;
@@ -54,12 +51,10 @@ namespace UI
             {
                 switch (hashStr(token))
                 {
-                    case 19190780:
-                        {
-                            strcat((*curElement[depth])->texts.back()->text, data + 1);
-                            break;
-                        } //text
+                    case 19190780: {strcat((*curElement[depth])->texts.back()->text, data + 1); break;} //text
                     case 832640817: {if (depth > 0) depth--; break;}
+                    case 9251: break; //ui
+                    case 156227427: break; //scene
                     default: return UI_PARSE_ERR;
                 }
                 dataIndex = 0;
@@ -99,7 +94,7 @@ namespace UI
                 {
                     sscanf(token, R"(%*[^"]"%n%[^"]s)", &scanned, value); //Raw string literal, from c++11
                     memcpy(token, token + scanned + strlen(value) + 2, strlen(token));
-                    //std::cout << "name: " << name << " attr: " << attr << " value: " << value << " hash: " << hashStr("ui") << std::endl;
+                    //std::cout << "name: " << name << " attr: " << attr << " value: " << value << " hash: " << hashStr("/scene") << std::endl;
                     switch (hashStr(name))
                     {
                         case 5039596: { if (hashStr(attr) == 133) (*curScene)->id = strtol(value, nullptr, 10); break;} //scene
@@ -125,6 +120,7 @@ namespace UI
                                 case 17082243: { (*curElement[depth])->texts.back()->color = strtol(value, nullptr, 16); break;} //color
                                 case 609745:
                                 {
+                                    char path[100] = "../data/fonts/";
                                     (*curElement[depth])->texts.back()->fontType = res::res_getFontType(value);
                                     if ((*curElement[depth])->texts.back()->fontType == (uint32_t)-1)
                                         return UI_PARSE_ERR;
@@ -206,8 +202,8 @@ namespace UI
         uiElements = new UI_ELEMENT[UI_TYPES::LAST];
         ui = new list<UI_SCENE*>();
         e_exitCodes exitCode = parseUI();
+        if (exitCode != OK) return exitCode;
         traverseTrie<UI_ELEMENT*>(ui->back()->root->childNodes.head, genPos);
-        exitCode = UI_CONF_ERR;
         return exitCode;
     }
 
