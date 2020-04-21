@@ -27,7 +27,8 @@ namespace util
         gameEvent->myRel = rawEvent->motion.yrel;
         gameEvent->mbutton = rawEvent->button.button;
         gameEvent->type = index;
-        //std::cout << index << " " << gameEvent->key << " " << gameEvent->my << " " << gameEvent->mx << " " << (uint32_t)gameEvent->mbutton << " " << rawEvent->motion.xrel << std::endl;
+        gameEvent->winEv = rawEvent->window.event;
+        //std::cout << index << " " << gameEvent->key << " " << gameEvent->my << " " << gameEvent->mx << " " << (uint32_t)gameEvent->mbutton << " " << +rawEvent->window.event<< std::endl;
     }
 
     long long hashStr(const char* str)
@@ -37,11 +38,11 @@ namespace util
         long long hash = 0;
         long long p_pow = 1;
         for (int i = 0; str[i] != 0; i++)
-    {
-        hash = (hash + (str[i] - 'a' + 1) * p_pow) % m;
-        p_pow = (p_pow * p) % m;
-    }
-    return hash;
+        {
+            hash = (hash + (str[i] - 'a' + 1) * p_pow) % m;
+            p_pow = (p_pow * p) % m;
+        }
+        return hash;
     }
 }
 
@@ -72,7 +73,7 @@ namespace res
         return tmp;
     }
 
-    TTF_Font *res_getFont(uint32_t size, uint32_t type) {
+    TTF_Font *res_getFont(uint32_t size, uint32_t type) { //sizes are 18, 24, 32, 48
         return g_fontLib[size][type];
     }
 
@@ -95,7 +96,7 @@ namespace res
         char path[100] = "../data/fonts/";
         uint32_t term = strlen(path);
         fontNames[0] = "font.ttf";
-        fontNames[1] = "font.ttf";
+        fontNames[1] = "Gothic_1.ttf";
         fontNames[2] = "font.ttf";
 
         for (int i = 0; i < fontNum; i++)
@@ -116,15 +117,6 @@ namespace res
         for (auto &i : g_fontLib)
             for (auto &j: i)
                 TTF_CloseFont(j);
-    }
-}
-
-
-namespace math
-{
-    e_exitCodes math_init()
-    {
-        return OK;
     }
 }
 

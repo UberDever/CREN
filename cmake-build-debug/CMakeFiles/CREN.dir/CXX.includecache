@@ -10,6 +10,26 @@
 util.hpp
 ../include/util.hpp
 
+../include/game.hpp
+util.hpp
+../include/util.hpp
+UI.hpp
+../include/UI.hpp
+
+../include/gut.hpp
+util.hpp
+../include/util.hpp
+UI.hpp
+../include/UI.hpp
+game.hpp
+../include/game.hpp
+
+../include/s_pause.hpp
+util.hpp
+../include/util.hpp
+gut.hpp
+../include/gut.hpp
+
 ../include/util.hpp
 SDL.h
 -
@@ -24,9 +44,9 @@ iostream
 cmath
 -
 
-/home/uberdever/dev/PRJS/CREN/src/UI.cpp
-UI.hpp
-/home/uberdever/dev/PRJS/CREN/src/UI.hpp
+/home/uberdever/dev/PRJS/CREN/src/s_pause.cpp
+s_pause.hpp
+/home/uberdever/dev/PRJS/CREN/src/s_pause.hpp
 
 /usr/include/SDL2/SDL.h
 SDL_main.h

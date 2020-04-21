@@ -14,6 +14,7 @@
 #include "s_temp.hpp"
 #include "s_mainmenu.hpp"
 #include "s_gameplay.hpp"
+#include "s_pause.hpp"
 
 namespace cren
 {
@@ -26,11 +27,9 @@ namespace cren
     using namespace UI;
 
     //defined vars
-    constexpr int SCENE_NUM = 4;
+    constexpr int SCENE_NUM = 5;
 
-    //main block (declaration)
     e_exitCodes exec();
-
     e_exitCodes init();
     void clean();
 

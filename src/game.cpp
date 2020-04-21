@@ -5,12 +5,22 @@
 
 namespace global
 {
-    e_gameStates _nextState = e_gameStates::MAIN_MENU;
+    e_gameStates _nextState = e_gameStates::PAUSE;
+    UI_CONTEXT _curUIContext = UI_CONTEXT::GAME_PAUSE;
+    SDL_Surface* _curScreenSurf = nullptr;
 
     /************************************************************/
 
     e_gameStates& nextState() {
         return _nextState;
+    }
+
+    UI_CONTEXT &curUIContext() {
+        return _curUIContext;
+    }
+
+    SDL_Surface* curScreenSurf() {
+        return _curScreenSurf;
     }
 }
 
@@ -40,14 +50,17 @@ namespace game
         return OK;
     }
 
-    //void
-
     e_exitCodes game_init() {
         e_exitCodes exitCode = OK;
         gpd = new GAME_DATA();
         gpd->pl = new PLAYER();
+        gpd->ui = new UI_SCENE*[UI::getUI()->size()];
+        lnode<UI_SCENE*>* pSc = UI::getUI()->head;
+        for (int i = 0; pSc ; ++i, pSc = pSc->nx) {gpd->ui[i] = pSc->data;}
+
         gpd->pl->pos.x = 2;
         gpd->pl->pos.y = 2; //TODO delete this after
+
         exitCode = static_cast<e_exitCodes>(exitCode | loadMap("exam.map"));
         return exitCode;
     }

@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/uberdever/dev/PRJS/CREN/src/s_exit.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_exit.cpp.o"
   "/home/uberdever/dev/PRJS/CREN/src/s_gameplay.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_gameplay.cpp.o"
   "/home/uberdever/dev/PRJS/CREN/src/s_mainmenu.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o"
+  "/home/uberdever/dev/PRJS/CREN/src/s_pause.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_pause.cpp.o"
   "/home/uberdever/dev/PRJS/CREN/src/s_temp.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/s_temp.cpp.o"
   "/home/uberdever/dev/PRJS/CREN/src/util.cpp" "/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CMakeFiles/CREN.dir/src/util.cpp.o"
   )

@@ -2,9 +2,9 @@
 // Created by uberdever on 19.02.2020.
 //
 
-#include "s_mainmenu.hpp"
+#include "s_pause.hpp"
 
-namespace mainmenu
+namespace pause
 {
     e_gameStates (*pEventCases[SDL_ParseCount + 1])() = {nullptr};
 
@@ -15,28 +15,45 @@ namespace mainmenu
 
     e_gameStates onExit() { return EXIT; }
     e_gameStates onWindowEvent() {
-        return MAIN_MENU;
+        return PAUSE;
     }
     e_gameStates onKeyDown()
     {
         if (g_event->key == SDLK_ESCAPE)
         {
-            SDL_SetRelativeMouseMode(SDL_TRUE);
+            //SDL_SetRelativeMouseMode(SDL_TRUE);
             global::nextState() = GAMEPLAY;
             return TEMP;
         }
-        return MAIN_MENU;
+        if (g_event->key == SDLK_f)
+        {
+            gut_updWin(800, 600, 0);
+        }
+        if (g_event->key == SDLK_c)
+        {
+            gut_updWin(640, 480, 0);
+        }
+        if (g_event->key == SDLK_g)
+        {
+            gut_updWin(1920, 1080, SDL_WINDOW_FULLSCREEN_DESKTOP);
+        }
+        if (g_event->key == SDLK_v)
+        {
+            gut_updWin(640, 480, SDL_WINDOW_FULLSCREEN_DESKTOP);
+        }
+
+        return PAUSE;
     }
-    e_gameStates onKeyUp() { return MAIN_MENU; }
-    e_gameStates onMouseMotion() { return MAIN_MENU; }
-    e_gameStates onMouseButtonDown() { return MAIN_MENU; }
-    e_gameStates onMouseButtonUp() { return MAIN_MENU; }
-    e_gameStates onMouseWheel() { return MAIN_MENU; }
-    e_gameStates onNothing() { return MAIN_MENU; }
+    e_gameStates onKeyUp() { return PAUSE; }
+    e_gameStates onMouseMotion() { return PAUSE; }
+    e_gameStates onMouseButtonDown() { return PAUSE; }
+    e_gameStates onMouseButtonUp() { return PAUSE; }
+    e_gameStates onMouseWheel() { return PAUSE; }
+    e_gameStates onNothing() { return PAUSE; }
 
     e_gameStates event() {
         SDL_Event rawEvent;
-        e_gameStates state = MAIN_MENU;
+        e_gameStates state = PAUSE;
 
         while (SDL_PollEvent(&rawEvent))
         {
@@ -49,7 +66,7 @@ namespace mainmenu
     /************************************************************/
 
     e_gameStates update() {
-        return MAIN_MENU;
+        return PAUSE;
     }
 
     /************************************************************/

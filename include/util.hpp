@@ -18,8 +18,10 @@ namespace cfg
     struct CFG
     {
         //global vars
-        uint32_t scrW;
-        uint32_t scrH;
+        int scrRenW;
+        int scrRenH;
+        int scrUIW;
+        int scrUIH;
 
         //game vars
         float pl_planeSize;
@@ -29,9 +31,11 @@ namespace cfg
         bool isFullscreen;
 
         CFG():
-                scrW{640},
-                scrH{480},
-                isFullscreen{false},
+                scrRenW{640},
+                scrRenH{480},
+                scrUIW{0},
+                scrUIH{0},
+                isFullscreen{true},
 
                 pl_planeSize{.66666666f},
                 pl_rotSpeed{.3f},
@@ -70,7 +74,8 @@ namespace util
         EXIT      = 0x00,
         MAIN_MENU = 0x01,
         GAMEPLAY  = 0x02,
-        TEMP      = 0x03
+        PAUSE     = 0x03,
+        TEMP      = 0x04
     };
 
     /************************************************************/
@@ -105,12 +110,23 @@ namespace util
         int my;
         int32_t mxRel; int32_t myRel;
         uint8_t mbutton, type;
+        uint8_t winEv;
 
-        GAMEEVENT(): mx(0), my(0), mbutton(0), type(8), mxRel{0}, myRel{0} {}
+        GAMEEVENT(): mx(0), my(0), mbutton(0), type(8), mxRel{0}, myRel{0}, winEv{0} {}
     };
 
     //first 128 keyboard keys, for elegant implementation of repeating
     static bool kbState[128];
+
+    //union for direct access of colors values
+    struct COLOR
+    {
+        union {
+            uint32_t color;
+            struct {uint8_t a; uint8_t b; uint8_t g; uint8_t r;};
+        };
+    };
+
 
     template <typename T>
     struct lnode
@@ -130,7 +146,7 @@ namespace util
         lnode<T>* tail;
 
         list<T>() : head{nullptr}, tail{nullptr} {}
-        ~list<T>() {auto* tmp = head; while(!head) {tmp = tmp->nx; delete head; head = tmp; }}
+        ~list<T>() {clean();}
 
         bool is_empty() {return !head;}
 
@@ -147,6 +163,26 @@ namespace util
             tail->nx = new lnode<T>();
             tail->nx->data = _data;
             tail = tail->nx;
+        }
+
+        void clean()
+        {
+            if (is_empty()) return;
+            auto* p = head;
+            while (head)
+            {
+                p = p->nx;
+                delete head;
+                head = p;
+            }
+        }
+
+        uint32_t size()
+        {
+            auto p = head;
+            uint32_t size = 0;
+            while (p) {p = p->nx; size++;}
+            return size;
         }
 
         void print()
@@ -187,13 +223,18 @@ namespace util
     }
 
     long long hashStr(const char* str);
-
 }
 
 //res - all technical outer world resource handling
 namespace res
 {
     using namespace util;
+
+    //struct FNT
+    //{
+        //TTF_Font* font;
+        //int size;
+    //};
 
     e_exitCodes res_init();
     void res_clean();
@@ -208,10 +249,6 @@ namespace res
 //math - all math, used in project (it can be not much, but it still required)
 namespace math
 {
-    //void calc_trig (float beta, float* s, float* c);
-
-    using namespace util;
-
     //Vec2 struct and related functions
     template <typename T>
     struct v2
@@ -261,6 +298,13 @@ namespace math
         return v2<T>{lhs.x * rhs, lhs.y * rhs};
     }
 
+    template <typename T> //vector-scalar division
+    inline v2<T> operator/ (const v2<T>&lhs, const T rhs)
+    {
+        constexpr T rhsInv = 1 / rhs;
+        return v2<T>{lhs.x * rhsInv, lhs.y * rhsInv};
+    }
+
     template <typename T> //scalar multiplication
     inline T operator* (const v2<T>&lhs, const v2<T>& rhs)
     {
@@ -274,8 +318,11 @@ namespace math
         return os;
     }
 
-
-    util::e_exitCodes math_init();
 }
 
+namespace gut
+{
+    SDL_Window* getW();
+    SDL_Renderer* getR();
+}
 #endif //CREN_UTIL_H

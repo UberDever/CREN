@@ -23,7 +23,7 @@ namespace gameplay
         if (g_event->key == SDLK_ESCAPE)
         {
             SDL_SetRelativeMouseMode(SDL_FALSE);
-            global::nextState() = MAIN_MENU;
+            global::nextState() = PAUSE;
             return TEMP;
         }
         return GAMEPLAY;

@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/CREN.dir/src/s_exit.cpp.o"
   "CMakeFiles/CREN.dir/src/s_gameplay.cpp.o"
   "CMakeFiles/CREN.dir/src/s_mainmenu.cpp.o"
+  "CMakeFiles/CREN.dir/src/s_pause.cpp.o"
   "CMakeFiles/CREN.dir/src/s_temp.cpp.o"
   "CMakeFiles/CREN.dir/src/util.cpp.o"
   "CREN"

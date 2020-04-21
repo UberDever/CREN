@@ -6,48 +6,36 @@
 
 namespace gut
 {
-    game::GAME_DATA* pd; // for convenience
+    void (*pDrawUI[UI_TYPES::LAST + 1])(UI_ELEMENT*) = {nullptr};
 
     SDL_Window* g_wind;
     SDL_Renderer* g_rend;
+    SDL_Texture* g_text;
 
-    SDL_Surface* scrSurf = nullptr;
-    SDL_Surface* temp_surf = nullptr; //for global use in gut functions
+    uint32_t* g_textBuf;
+
+    //SDL_Surface* gameSurf = nullptr;
+    //SDL_Surface* temp_surf = nullptr; //for global use in gut functions
 
     /************************************************************/
 
-    SDL_Window* getW() { return g_wind; }
+    SDL_Window* getW() { return g_wind; } //declared in util, for global use
     SDL_Renderer* getR() { return g_rend; }
 
     /************************************************************/
 
-    void drawVertical(int x, int yS, int yE)
+    void gut_raycast() //TODO: REBUILD
     {
-        auto* buf = static_cast<uint32_t *>(scrSurf->pixels);
-        for (int i = yS; i < yE; ++i) {
-            buf[i * getCFG().scrW + x] = 0xFF00FF00;
-        }
-    }
-
-    void gut_raycast()
-    {
-        //pd->map->id[static_cast<int>((int)pd->pl->pos.y * pd->map->w + (int)pd->pl->pos.x)] = 'X';
-        /*for (int i = 0; i < pd->map->h; ++i) {
-            for (int j = 0; j < pd->map->w; ++j) {
-                std::cout << (char)pd->map->id[i * pd->map->w + j];
-            }
-            std::cout << std::endl;
-        }*/
-        auto* buf = static_cast<uint32_t*>(scrSurf->pixels);
-        for (int k = 0; k < getCFG().scrH; ++k) {
-            for (int i = 0; i < getCFG().scrW; ++i) {
-                buf[k * getCFG().scrW + i] = 0;
-            }
-        }
+        static game::GAME_DATA* pd = game::getData();
 
         auto* map = pd->mp->id;
-        int scrW = getCFG().scrW;
-        int scrH = getCFG().scrH;
+        int scrW = getCFG().scrRenW;
+        int scrH = getCFG().scrRenH;
+
+        int dS = 0;
+        int dE = 0;
+
+        memset(g_textBuf, 0, scrW * scrH * sizeof(uint32_t));
 
         for (int x = 0; x < scrW; ++x) {
             float cam = 2.f * (float)x / (float)scrW - 1;
@@ -98,14 +86,71 @@ namespace gut
             else    pwd = (pos.y - pd->pl->pos.y + (1.f - step.y) / 2) / ray.y;
 
             int line = (int)(getCFG().mp_wallHeight * (float)scrH / pwd);
-            int dS = -line / 2 + scrH / 2; dS = dS < 0 ? 0 : dS;
-            int dE = line / 2 + scrH / 2; dE = dE >= scrH ? scrH - 1 : dE;
+            if (line) //for evading zero-length lines
+            {
+                dS = -line / 2 + scrH / 2; dS = dS < 0 ? 0 : dS;
+                dE = line / 2 + scrH / 2; dE = dE >= scrH ? scrH - 1 : dE;
+            }
 
-            drawVertical(x, dS, dE);
+            for (int i = dS; i < dE; ++i) {
+                g_textBuf[i * scrW + x] = 0x0000FFFF;
+            }
         }
-        SDL_Texture* tex = SDL_CreateTextureFromSurface(g_rend, scrSurf);
-        SDL_RenderCopy(g_rend, tex, 0, 0);
-        SDL_DestroyTexture(tex);
+        SDL_UpdateTexture(g_text, nullptr, &g_textBuf[0], scrW * sizeof(uint32_t));
+        SDL_RenderCopy(g_rend, g_text, nullptr, nullptr);
+        SDL_RenderPresent(g_rend);
+    }
+
+    /************************************************************/
+
+    void _drawBUTTON(UI_ELEMENT* pEl)
+    {
+
+    }
+
+    void _drawBLANK(UI_ELEMENT* pEl)
+    {
+        SDL_SetRenderDrawColor(g_rend, pEl->frame->col.r, pEl->frame->col.g, pEl->frame->col.b, pEl->frame->col.a);
+        const SDL_Rect out {pEl->frame->pos.x, pEl->frame->pos.y, pEl->frame->size.x, pEl->frame->size.y};
+        SDL_RenderFillRect(g_rend, &out);
+
+        lnode<UI_PICTURE*>* pIcn = pEl->pics.head;
+        while (pIcn)
+        {
+            SDL_Rect o {pIcn->data->pos.x, pIcn->data->pos.y, pIcn->data->size.x, pIcn->data->size.y};
+            SDL_RenderCopy(g_rend, pIcn->data->texture, nullptr, &o);
+            pIcn = pIcn->nx;
+        }
+
+        lnode<UI_TEXT*>* pText = pEl->texts.head;
+        while (pText)
+        {
+            SDL_Color col = {pText->data->col.r, pText->data->col.g, pText->data->col.b, pText->data->col.a};
+            TTF_Font* fnt = res::res_getFont(0, 1);
+            SDL_Surface* tmpText = TTF_RenderUTF8_Blended(fnt, pText->data->text, col);
+            SDL_Texture* tmpTexture = SDL_CreateTextureFromSurface(g_rend, tmpText);
+            SDL_Rect o {pText->data->pos.x, pText->data->pos.y};
+            SDL_QueryTexture(tmpTexture, 0, 0, &o.w, &o.h);
+            if (pText->data->alignment == 520551755) {o.x -= o.w / 2; o.y -= o.h / 2;} //center
+            else if (pText->data->alignment == 601753) {o.x -= o.w;} //left
+            SDL_RenderCopy(g_rend, tmpTexture, 0, &o);
+            SDL_FreeSurface(tmpText);
+            SDL_DestroyTexture(tmpTexture);
+            pText = pText->nx;
+        }
+    }
+
+    void _drawUI(UI_ELEMENT* pEl)
+    {
+        pDrawUI[pEl->frame->type](pEl);
+    }
+
+    void gut_UI()
+    {
+        static game::GAME_DATA* pd = game::getData();
+        UI_CONTEXT UIContext = global::curUIContext();
+
+        traverseTrie<UI_ELEMENT*>(pd->ui[UIContext]->root->childNodes.head, _drawUI);
         SDL_RenderPresent(g_rend);
     }
 
@@ -122,23 +167,22 @@ namespace gut
         if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG)
             return GUT_IMG_ERR;
 
-        g_wind = SDL_CreateWindow("CREN", 0, 0, getCFG().scrW, getCFG().scrH, SDL_WINDOW_SHOWN | (getCFG().isFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0));
+        g_wind = SDL_CreateWindow("CREN", 0, 0, getCFG().scrRenW, getCFG().scrRenH, SDL_WINDOW_SHOWN | (getCFG().isFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0) | SDL_WINDOW_OPENGL);
+        SDL_DisplayMode md;
+        SDL_GetCurrentDisplayMode(0, &md);
+        getCFG().scrUIH = md.h; getCFG().scrUIW = md.w;
         if (g_wind == nullptr)
             return GUT_SDL_ERR;
 
-        g_rend = SDL_CreateRenderer(g_wind, -1, SDL_RENDERER_SOFTWARE);
+        g_rend = SDL_CreateRenderer(g_wind, -1, SDL_RENDERER_ACCELERATED);
         if (g_rend == nullptr)
             return GUT_SDL_ERR;
 
-        pd = game::getData();
+        g_text = SDL_CreateTexture(g_rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, getCFG().scrRenW, getCFG().scrRenH);
+        g_textBuf = new uint32_t[getCFG().scrRenW * getCFG().scrRenH];
 
-        scrSurf = SDL_CreateRGBSurface(0, getCFG().scrW, getCFG().scrH, 32, 0, 0, 0, 0);
-        auto* buf = static_cast<uint32_t*>(scrSurf->pixels);
-        for (int k = 0; k < getCFG().scrH; ++k) {
-            for (int i = 0; i < getCFG().scrW; ++i) {
-                buf[k * getCFG().scrW + i] = 0;
-            }
-        }
+        pDrawUI[0] = _drawBLANK;
+        pDrawUI[1] = _drawBUTTON;
 
         return OK;
     }
@@ -151,6 +195,24 @@ namespace gut
         IMG_Quit();
         TTF_Quit();
         SDL_Quit();
+    }
+
+    void gut_updWin(int w, int h, uint32_t flags) {
+        getCFG().scrRenW = w;
+        getCFG().scrRenH = h;
+
+        delete g_textBuf;
+        g_textBuf = new uint32_t[w * h];
+        SDL_DestroyTexture(g_text);
+        g_text = SDL_CreateTexture(g_rend, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, getCFG().scrRenW, getCFG().scrRenH);
+
+        SDL_SetWindowFullscreen(g_wind, flags);
+        SDL_SetWindowSize(g_wind, w, h);
+
+        SDL_GetWindowSize(g_wind, &getCFG().scrUIW, &getCFG().scrUIH);
+        std::cout << getCFG().scrUIW << " " << getCFG().scrUIH << std::endl;
+        UI::setupUI();
+
     }
 
 }

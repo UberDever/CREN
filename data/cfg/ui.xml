@@ -1,27 +1,41 @@
-#comment
-#comment
-#comment
-#basically, any text, comments works now!
-#pos and size is in percent!
+#pos and size are percentage values!
+#order of scenes matter
+
+#comment elements for convenience
+#<scene id="0"></scene>                                                 id = scene identifier
+#<element id="0"></element>                                             id = unused
+#<frame pos="0 0" size="0 0" color="0x0" type="0">
+#<text pos="0 0" size="0" color="0x0" font="font.ttf">EXAMPLE</text>
+#<picture pos="0 0" size="0 0" png="pic.png">
 
 <ui>
-    <scene id="1">
-        <element id="2">
-        
-            <element id="3">
-                <frame pos="5 6" size="5 6" color="0x7" type="3">
-                <text pos="8 9" size="10" color="0x11" font="font.ttf">Testing text</text>
-                <picture pos="12 13" size="14 15" png="menu.png">
+
+    <scene id="0"> #MainMenu scene
+        <element id="0">
+            <frame pos="40 25" size="20 50" color="0xFFFFFFFF" type="0">
+            <text pos="50 10" size="14" color="0xffa50000" font="Gothic_1.ttf" align="center">PAUSE</text>
+            <picture pos="0 0" size="100 100" png="pause_background.png">
+            
+            <element id="1">
+                <frame pos="10 85" size="80 10" color="0x0" type="0">
+                <text pos="50 50" size="14" color="0xffa50000" font="Gothic_1.ttf" align="center">EXIT</text>
+                <picture pos="0 0" size="100 100" png="button.png">
             </element>
-        
-            <frame pos="3 4" size="5 6" color="0x7" type="2">
-            
-            <text pos="8 9" size="10" color="0x11" font="font.ttf">Is't very short text without any extra formatting, even without \n or so 1</text>
-            <text pos="8 9" size="10" color="0x11" font="font.ttf">Is't very short text without any extra formatting, even without \n or so 2</text>
-            <text pos="8 9" size="10" color="0x11" font="font.ttf">Is't very short text without any extra formatting, even without \n or so 3</text>
-            <text pos="8 9" size="10" color="0x11" font="font.ttf">Is't very short text without any extra formatting, even without \n or so 4</text>
-            
-            <picture pos="12 13" size="14 15" png="menu.png">
         </element>
     </scene>
+
+    <scene id="1"> #GamePause scene
+        <element id="0">
+            <frame pos="40 25" size="20 50" color="0xFFFFFFFF" type="0">
+            <text pos="50 10" size="14" color="0xffa50000" font="Gothic_1.ttf" align="center">PAUSE</text>
+            <picture pos="0 0" size="100 100" png="pause_background.png">
+            
+            <element id="1">
+                <frame pos="10 85" size="80 10" color="0x0" type="0">
+                <text pos="50 50" size="14" color="0xffa50000" font="Gothic_1.ttf" align="center">EXIT</text>
+                <picture pos="0 0" size="100 100" png="button.png">
+            </element>
+        </element>
+    </scene>
+    
 </ui>

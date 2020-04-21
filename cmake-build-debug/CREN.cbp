@@ -27,6 +27,16 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/uberdever/dev/PRJS/CREN/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="CREN">
 				<Option output="/home/uberdever/dev/PRJS/CREN/cmake-build-debug/CREN" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/uberdever/dev/PRJS/CREN/cmake-build-debug"/>
@@ -79,16 +89,6 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/uberdever/dev/PRJS/CREN/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/uberdever/dev/PRJS/CREN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 		</Build>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/include/UI.hpp">
 			<Option target="CREN"/>
@@ -109,6 +109,9 @@
 			<Option target="CREN"/>
 		</Unit>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/include/s_mainmenu.hpp">
+			<Option target="CREN"/>
+		</Unit>
+		<Unit filename="/home/uberdever/dev/PRJS/CREN/include/s_pause.hpp">
 			<Option target="CREN"/>
 		</Unit>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/include/s_temp.hpp">
@@ -139,6 +142,9 @@
 			<Option target="CREN"/>
 		</Unit>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/src/s_mainmenu.cpp">
+			<Option target="CREN"/>
+		</Unit>
+		<Unit filename="/home/uberdever/dev/PRJS/CREN/src/s_pause.cpp">
 			<Option target="CREN"/>
 		</Unit>
 		<Unit filename="/home/uberdever/dev/PRJS/CREN/src/s_temp.cpp">

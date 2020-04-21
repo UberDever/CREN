@@ -7,7 +7,7 @@
 namespace cren
 {
     //game cycle vars
-    e_gameStates curState = GAMEPLAY;
+    e_gameStates curState = PAUSE;
     SCENE* p_Scene[SCENE_NUM] = {nullptr};
     constexpr uint32_t TICKS = 50;
     constexpr uint32_t SKIP_TIME = 1000 / TICKS;
@@ -50,11 +50,15 @@ namespace cren
     e_exitCodes init()
     {
         e_exitCodes exitCode = OK;
-        exitCode = static_cast<e_exitCodes>(exitCode | game_init());
-        exitCode = static_cast<e_exitCodes>(exitCode | math_init());
+
+        //exitCode = static_cast<e_exitCodes>(exitCode | math_init());
         exitCode = static_cast<e_exitCodes>(exitCode | gut_init());
         exitCode = static_cast<e_exitCodes>(exitCode | res_init());
         exitCode = static_cast<e_exitCodes>(exitCode | UI_init());
+
+
+        exitCode = static_cast<e_exitCodes>(exitCode | game_init());
+
 
         s_init();
 
@@ -80,6 +84,8 @@ namespace cren
         p_Scene[MAIN_MENU]->init_scene(mainmenu::init, mainmenu::event, mainmenu::update, mainmenu::render, mainmenu::clean);
         p_Scene[GAMEPLAY] = new SCENE();
         p_Scene[GAMEPLAY]->init_scene(gameplay::init, gameplay::event, gameplay::update, gameplay::render, gameplay::clean);
+        p_Scene[PAUSE] = new SCENE();
+        p_Scene[PAUSE]->init_scene(pause::init, pause::event, pause::update, pause::render, pause::clean);
         p_Scene[TEMP] = new SCENE();
         p_Scene[TEMP]->init_scene(temp::init, temp::event, temp::update, temp::render, temp::clean);
     }

@@ -8,9 +8,10 @@
 namespace UI
 {
     list<UI_SCENE*>* ui;
-    UI_ELEMENT* uiElements;
 
-    //lnode<UI_SCENE*> getContext() {return ui.head;}
+    list<UI_SCENE*>* getUI() {
+        return ui;
+    }
 
     v2<int> parseV2(const char* str)
     {
@@ -94,18 +95,22 @@ namespace UI
                 {
                     sscanf(token, R"(%*[^"]"%n%[^"]s)", &scanned, value); //Raw string literal, from c++11
                     memcpy(token, token + scanned + strlen(value) + 2, strlen(token));
-                    //std::cout << "name: " << name << " attr: " << attr << " value: " << value << " hash: " << hashStr("/scene") << std::endl;
+                    //std::cout << "name: " << name << " attr: " << attr << " value: " << value << " hash: " << hashStr("left") << " " << (int)(SDL_WINDOW_MAXIMIZED) << std::endl;
                     switch (hashStr(name))
                     {
-                        case 5039596: { if (hashStr(attr) == 133) (*curScene)->id = strtol(value, nullptr, 10); break;} //scene
+                        case 5039596: { if (hashStr(attr) == 133) (*curScene)->id = static_cast<UI_CONTEXT>(strtol(value, nullptr, 10)); break;} //scene
                         case 155891642: { if (hashStr(attr) == 133) (*curElement[depth])->id = strtol(value, nullptr, 10); break;} //element
                         case 5006413: //frame
                         {
                             switch (hashStr(attr))
                             {
-                                case 18740: { (*curElement[depth])->frame->pos = parseV2(value); break;} //pos
-                                case 174239: { (*curElement[depth])->frame->size = parseV2(value);break;} //size
-                                case 17082243: { (*curElement[depth])->frame->color = strtol(value, nullptr, 16); break;} //color
+                                case 18740: { (*curElement[depth])->frame->relPos = parseV2(value); break;} //pos
+                                case 174239: { (*curElement[depth])->frame->relSize = parseV2(value);break;} //size
+                                case 17082243:
+                                {
+                                    (*curElement[depth])->frame->col.color = strtol(value, nullptr, 16);
+                                    break;
+                                } //color
                                 case 165126: { (*curElement[depth])->frame->type = static_cast<UI_TYPES>(strtol(value, nullptr, 10)); break;} //type
                                 default: return UI_PARSE_ERR;
                             }
@@ -115,9 +120,9 @@ namespace UI
                         {
                             switch (hashStr(attr))
                             {
-                                case 18740: { (*curElement[depth])->texts.back()->pos = parseV2(value); break;} //pos
+                                case 18740: { (*curElement[depth])->texts.back()->relPos = parseV2(value); break;} //pos
                                 case 174239: { (*curElement[depth])->texts.back()->size = strtol(value, nullptr, 10); break;} //size
-                                case 17082243: { (*curElement[depth])->texts.back()->color = strtol(value, nullptr, 16); break;} //color
+                                case 17082243: { (*curElement[depth])->texts.back()->col.color = strtol(value, nullptr, 16); break;} //color
                                 case 609745:
                                 {
                                     char path[100] = "../data/fonts/";
@@ -126,6 +131,7 @@ namespace UI
                                         return UI_PARSE_ERR;
                                     break;
                                 } //font
+                                case 13146853: {(*curElement[depth])->texts.back()->alignment = hashStr(value); break; } //align 601753 520551755 18715772 left center right}
                                 default: return UI_PARSE_ERR;
                             }
                             break;
@@ -134,13 +140,15 @@ namespace UI
                         {
                             switch (hashStr(attr))
                             {
-                                case 18740: { (*curElement[depth])->pics.back()->pos = parseV2(value); break;} //pos
-                                case 174239: { (*curElement[depth])->pics.back()->size = parseV2(value); break;} //size
+                                case 18740: { (*curElement[depth])->pics.back()->relPos = parseV2(value); break;} //pos
+                                case 174239: { (*curElement[depth])->pics.back()->relSize = parseV2(value); break;} //size
                                 case 7177:
                                 {
                                     char path[100] = "../data/sprites/UI/";
-                                    (*curElement[depth])->pics.back()->surf = res::res_loadPNG(strcat(path, value));
-                                    if ((*curElement[depth])->pics.back()->surf == nullptr) return UI_PARSE_ERR;
+                                    SDL_Surface* tmp = res::res_loadPNG(strcat(path, value));
+                                    (*curElement[depth])->pics.back()->texture = SDL_CreateTextureFromSurface(gut::getR(),tmp);
+                                    SDL_FreeSurface(tmp);
+                                    if ((*curElement[depth])->pics.back()->texture == nullptr) return UI_PARSE_ERR;
                                     break;
                                 } //png
                                 default: return UI_PARSE_ERR;
@@ -156,58 +164,82 @@ namespace UI
         return OK;
     }
 
-    void genPos(UI_ELEMENT* pEl)
+    void setupChildUI(UI_ELEMENT* pEl)
     {
         lnode<UI_ELEMENT*>* pList = pEl->childNodes.head;
         while (pList)
         {
-            pList->data->frame->pos += pEl->frame->pos;
-            if (!pList->data->texts.is_empty())
+            pList->data->frame->pos = pEl->frame->pos +
+                    v2<int>{(pList->data->frame->relPos.x * pEl->frame->size.x) / 100, (pList->data->frame->relPos.y * pEl->frame->size.y) / 100};
+            pList->data->frame->size = v2<int>{(pList->data->frame->relSize.x * pEl->frame->size.x) / 100, (pList->data->frame->relSize.y * pEl->frame->size.y) / 100};
+
+            lnode<UI_TEXT*>* pText = pList->data->texts.head;
+            while (pText)
             {
-                lnode<UI_TEXT*>* pText = pList->data->texts.head;
-                while (pText)
-                {
-                    pText->data->pos += pEl->frame->pos;
-                    pText = pText->nx;
-                }
+                pText->data->pos = pList->data->frame->pos +
+                        v2<int>{(pText->data->relPos.x * pList->data->frame->size.x) / 100, (pText->data->relPos.y * pList->data->frame->size.y) / 100};
+                pText = pText->nx;
             }
-            if (!pList->data->pics.is_empty())
+
+            lnode<UI_PICTURE*>* pIcn = pList->data->pics.head;
+            while (pIcn)
             {
-                lnode<UI_PICTURE*>* pIcn = pList->data->pics.head;
-                while (pIcn)
-                {
-                    pIcn->data->pos += pEl->frame->pos;
-                    pIcn = pIcn->nx;
-                }
+                pIcn->data->size = v2<int>{pList->data->frame->size.x * pIcn->data->relSize.x / 100, pList->data->frame->size.y * pIcn->data->relSize.y / 100};
+                pIcn->data->pos = pList->data->frame->pos +
+                                   v2<int>{(pIcn->data->relPos.x * pList->data->frame->size.x) / 100, (pIcn->data->relPos.y * pList->data->frame->size.y) / 100};
+                pIcn = pIcn->nx;
             }
+
             pList = pList->nx;
         }
     }
 
-    void printText(UI_ELEMENT* pEl)
+    void setupUI()
     {
-        if (!pEl->texts.is_empty())
+        lnode<UI_SCENE*>* pUI = ui->head;
+        while (pUI)
         {
-            lnode<UI_TEXT*>* pText = pEl->texts.head;
-            while (pText)
+            lnode<UI_ELEMENT*>* pList = pUI->data->root->childNodes.head;
+            while (pList)
             {
-                std::cout << pText->data->text << std::endl;
-                pText = pText->nx;
+                pList->data->frame->pos = v2<int>{(pList->data->frame->relPos.x * cfg::getCFG().scrUIW) / 100, (pList->data->frame->relPos.y * cfg::getCFG().scrUIH) / 100};
+                pList->data->frame->size = v2<int>{(pList->data->frame->relSize.x * cfg::getCFG().scrUIW) / 100, (pList->data->frame->relSize.y * cfg::getCFG().scrUIH) / 100};
+
+                lnode<UI_TEXT*>* pText = pList->data->texts.head;
+                while (pText)
+                {
+                    pText->data->pos = pList->data->frame->pos +
+                                       v2<int>{(pText->data->relPos.x * pList->data->frame->size.x) / 100, (pText->data->relPos.y * pList->data->frame->size.y) / 100};
+                    pText = pText->nx;
+                }
+
+                lnode<UI_PICTURE*>* pIcn = pList->data->pics.head;
+                while (pIcn)
+                {
+                    pIcn->data->size = v2<int>{pList->data->frame->size.x * pIcn->data->relSize.x / 100, pList->data->frame->size.y * pIcn->data->relSize.y / 100};
+                    pIcn->data->pos = pList->data->frame->pos +
+                                      v2<int>{(pIcn->data->relPos.x * pList->data->frame->size.x) / 100, (pIcn->data->relPos.y * pList->data->frame->size.y) / 100};
+                    pIcn = pIcn->nx;
+                }
+                pList = pList->nx;
             }
+            traverseTrie<UI_ELEMENT*>(pUI->data->root->childNodes.head, setupChildUI);
+            pUI = pUI->nx;
         }
     }
 
     e_exitCodes UI_init()
     {
-        uiElements = new UI_ELEMENT[UI_TYPES::LAST];
         ui = new list<UI_SCENE*>();
         e_exitCodes exitCode = parseUI();
         if (exitCode != OK) return exitCode;
-        traverseTrie<UI_ELEMENT*>(ui->back()->root->childNodes.head, genPos);
+        setupUI();
         return exitCode;
     }
 
     void UI_clean() {
+        ui->clean();
         //TODO CLEAN UI
     }
+
 }

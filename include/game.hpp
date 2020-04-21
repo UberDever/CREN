@@ -7,14 +7,16 @@
 
 #include "util.hpp"
 #include "UI.hpp"
-#include "gut.hpp"
 
 //global - initially for interscene communication
 namespace global
 {
     using namespace util;
+    using namespace UI;
 
     e_gameStates& nextState();
+    UI_CONTEXT& curUIContext();
+    SDL_Surface* curScreenSurf();
 }
 
 //game - for managing all game related resources
@@ -50,19 +52,19 @@ namespace game
         }
     };
 
-    //Global struct, for data unification
+    //Global struct, for data unification (it's ETERNAL, deleted at the end of the program)
     struct GAME_DATA
     {
         PLAYER* pl;
         MAP* mp;
-        UI_SCENE* ui; //pointer for current UI context
+        UI_SCENE** ui; //array of pointers for ui scenes
 
         GAME_DATA() : pl{nullptr}, mp{nullptr}, ui{nullptr} {}
         ~GAME_DATA()
         {
             delete pl;
             delete mp;
-            delete ui;
+            delete ui; //delete array of pointers, contains handled by ui
         }
     };
 

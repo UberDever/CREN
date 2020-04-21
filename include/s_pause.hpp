@@ -1,19 +1,18 @@
 //
-// Created by uberdever on 18.02.2020.
+// Created by uberdever on 19.04.2020.
 //
 
-#ifndef CREN_S_GAMEPLAY_HPP
-#define CREN_S_GAMEPLAY_HPP
+#ifndef CREN_S_PAUSE_HPP
+#define CREN_S_PAUSE_HPP
 
 #include "util.hpp"
-#include "game.hpp"
 #include "gut.hpp"
 
-namespace gameplay
+namespace pause
 {
     using namespace util;
-    using namespace game;
     using namespace gut;
+    using namespace game;
 
     e_exitCodes init();
     e_gameStates event();
@@ -22,4 +21,4 @@ namespace gameplay
     void clean();
 }
 
-#endif //CREN_S_GAMEPLAY_HPP
+#endif //CREN_S_PAUSE_HPP
