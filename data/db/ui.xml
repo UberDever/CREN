@@ -1,0 +1,144 @@
+#pos and size are percentage values!
+#order of scenes matters
+#order of element components matters too
+#id do nothing at that point (01.05.20)
+#elements and scenes can have their unique id. If it isn't provided, id is assigned by element order, hierarchically
+#element type - static or dynamic, defined by button/slider/etc.. attribute
+#attribute visible by default
+#all attributes must be lowercase!
+#order of processing -> from bottom to top; render have inverted order
+
+##### What if i made a STYLE thing? #####
+
+#comment elements for convenience
+#<scene id="0"></scene>                                                 id = scene identifier
+#<element></element>                                             id = unused
+#<frame pos="0 0" size="0 0" color="0xFFFFFFFF" visible="false">
+#<text pos="0 0" size="0" color="0xFFFFFFFF" font="font.ttf" align="center" visible="false">EXAMPLE</text>
+#<picture pos="0 0" size="0 0" png="pic.png" visible="false">
+#<button var="" value="" default=""></button>
+#<list var="" value="" default="0"></list> #must have at least 1 element
+#0xffa50000
+#Gothic_1.ttf
+
+<ui>
+    <scene id="0"> #MainMenu scene
+        <element>
+            <frame pos="40 25" size="20 50" color="0xFFFFFFFF">
+            <text pos="50 10" size="18" color="0xFFFFFFFF" font="font.ttf" align="center">PAUSE</text>
+            <picture pos="0 0" size="100 100" png="pause_background.png">
+            
+            <element>
+                <frame pos="10 85" size="80 10" color="0xFFFFFFFF">
+                <text pos="50 50" size="14" color="0xFFFFFFFF" font="font.ttf" align="center">EXIT</text>
+                <picture pos="0 0" size="100 100" png="button.png">
+            </element>
+        </element>
+    </scene>
+
+    <scene id="1"> #GamePause scene
+        <element>
+            <frame pos="40 20" size="20 60" color="0xFFFFFF00">
+            <text pos="50 10" size="48" color="0xFFFFFFFF" font="font.ttf" align="center">PAUSE</text>
+            <picture pos="0 0" size="100 100" png="pause_background.png">
+                        
+            <element> #element-div!
+                <frame pos="0 -15" size="100 100" color="0xFFFFFFFF" visible="false">
+                
+                <element>
+                    <frame pos="10 52" size="80 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">RESUME</text>
+                    <picture pos="0 0" size="100 100" png="button.png">
+                    <button var="PAUSE_resume" value="0" default="0"></button>
+                </element>
+                
+                <element>
+                    <frame pos="10 64" size="80 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">SAVE</text>
+                    <picture pos="0 0" size="100 100" png="button.png">
+                    <button var="PAUSE_save" value="0" default="0"></button>
+                </element>
+                
+                <element>
+                    <frame pos="10 76" size="80 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">LOAD</text>
+                    <picture pos="0 0" size="100 100" png="button.png">
+                    <button var="PAUSE_load" value="0" default="0"></button>
+                </element>
+                
+                <element>
+                    <frame pos="10 88" size="80 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">OPTIONS</text>
+                    <picture pos="0 0" size="100 100" png="button.png">
+                    <button var="PAUSE_options" value="0" default="0"></button>
+                </element>
+                
+                <element>
+                    <frame pos="10 100" size="80 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">EXIT</text>
+                    <picture pos="0 0" size="100 100" png="button.png">
+                    <button var="PAUSE_exit" value="0" default="0"></button>
+                </element>
+            </element>
+            
+        </element>
+    </scene>
+    
+    <scene id="2"> #Options scene
+        <element>
+            <frame pos="40 20" size="20 60" color="0xFFFFFFFF">
+            <text pos="50 10" size="48" color="0xFFFFFFFF" font="font.ttf" align="center">OPTIONS</text>
+            <picture pos="0 0" size="100 100" png="pause_background.png">
+            
+            <element> #element-div!
+                <frame pos="0 -15" size="100 100" color="0xFFFFFFFF" visible="false">
+                
+                <element>
+                    <frame pos="10 100" size="80 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">BACK</text>
+                    <picture pos="0 0" size="100 100" png="button.png">
+                    <button var="OPTIONS_back" value="0" default="0"></button>
+                </element>
+                
+                <element>
+                    <frame pos="10 88" size="80 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">APPLY</text>
+                    <picture pos="0 0" size="100 100" png="button.png">
+                    <button var="OPTIONS_apply" value="0" default="0"></button>
+                </element>
+                
+                
+                <element>
+                    <frame pos="74 39" size="19 12" color="0xFFFFFFFF">
+                    <text pos="50 -15" size="21" color="0xFFFFFFFF" font="font.ttf" align="center">Full</text>
+                    <text pos="50 110" size="21" color="0xFFFFFFFF" font="font.ttf" align="center">Screen</text>
+                    <text pos="50 50" size="80" color="0xFFFFFFFF" font="font.ttf" align="center">+</text>
+                    <picture pos="0 0" size="100 100" png="checkbox.png">
+                    <button var="fullscreen" value="1" default="0" type="checkbox"></button>
+                </element>
+                
+                <element> #last elements can overlap other
+                    <frame pos="10 40" size="60 10" color="0xFFFFFFFF">
+                    <text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center"></text> #initial state (for style certanity)
+                    <picture pos="0 0" size="100 100" png="button.png"> #initial state (for style certanity)
+
+                    <list var="resolution" value="640x480 800x600 1280x720 1600x900 1920x1080 2560x1440" default="800x600"></list>
+                </element>
+                
+            </element>
+              
+        </element>
+    </scene>
+    
+    <scene id="3"> #Player menu scene
+        <element> #lhs
+            <frame pos="50 0" size="50 100" color="0x5bb0ff">
+            
+            <element> #inventory
+                <frame pos="0 70" size="100 30" color="0xa94c00">
+                <picture pos="0 0" size="63 100" png="inv_cells.png">
+            </element>   
+        </element>    
+    </scene>
+    
+</ui>
