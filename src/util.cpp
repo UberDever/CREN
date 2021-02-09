@@ -4,15 +4,6 @@
 
 #include "util.hpp"
 
-namespace cfg
-{
-    CFG &getCFG() {
-        static CFG g_cfg;
-        return g_cfg;
-    }
-}
-
-
 namespace util
 {
     void parse_event(SDL_Event* rawEvent, GAMEEVENT* gameEvent)
@@ -28,21 +19,61 @@ namespace util
         gameEvent->mbutton = rawEvent->button.button;
         gameEvent->type = index;
         gameEvent->winEv = rawEvent->window.event;
-        //std::cout << index << " " << gameEvent->key << " " << gameEvent->my << " " << gameEvent->mx << " " << (uint32_t)gameEvent->mbutton << " " << +rawEvent->window.event<< std::endl;
+        //std::cout << index << " " << gameEvent->key << " " << gameEvent->my << " " << gameEvent->mx << " " << (uint32_t)gameEvent->mbutton << " " << rawEvent->key.keysym.scancode << std::endl;
     }
 
-    long long hashStr(const char* str)
+    uint32_t hash(const char *data, size_t len) //nginx murmur hash function
     {
-        constexpr int p = 31;
-        constexpr int m = 1e9 + 9;
-        long long hash = 0;
-        long long p_pow = 1;
-        for (int i = 0; str[i] != 0; i++)
-        {
-            hash = (hash + (str[i] - 'a' + 1) * p_pow) % m;
-            p_pow = (p_pow * p) % m;
+        uint32_t  h, k;
+
+        h = 0 ^ len;
+
+        while (len >= 4) {
+            k  = data[0];
+            k |= data[1] << 8;
+            k |= data[2] << 16;
+            k |= data[3] << 24;
+
+            k *= 0x5bd1e995;
+            k ^= k >> 24;
+            k *= 0x5bd1e995;
+
+            h *= 0x5bd1e995;
+            h ^= k;
+
+            data += 4;
+            len -= 4;
         }
-        return hash;
+
+        switch (len) {
+            case 3:
+                h ^= data[2] << 16;
+                /* fall through */
+            case 2:
+                h ^= data[1] << 8;
+                /* fall through */
+            case 1:
+                h ^= data[0];
+                h *= 0x5bd1e995;
+        }
+
+        h ^= h >> 13;
+        h *= 0x5bd1e995;
+        h ^= h >> 15;
+
+        return h;
+    }
+
+    bool inField(int mx, int my, int px, int py, int sx, int sy) {
+        return ( (mx >= px) && (my >= py) ) && ( (mx <= px + sx) && (my <= py + sy) );
+    }
+
+    math::v2<int> parseV2(const char* str)
+    {
+        char* p;
+        int x = strtol(str, &p, 10);
+        int y = strtol(p, nullptr, 10);
+        return math::v2<int>{x, y};
     }
 }
 
@@ -52,10 +83,8 @@ namespace res
     /*DATA*/
     /************************************************************/
 
-    constexpr uint32_t fontNum = 4;
-    constexpr uint32_t fontTypes = 3;
-    TTF_Font* g_fontLib[fontNum][fontTypes] = {nullptr};
-    char* fontNames[fontTypes];
+    util::list<FNT*>* fonts;
+    util::vector<SDL_Texture*>* items;
 
     /*FUNCTIONS*/
     /************************************************************/
@@ -67,56 +96,51 @@ namespace res
         return tmp;
     }
 
+    void res_loadSprite(const char *path)
+    {
+
+    }
+
     TTF_Font* res_loadTTF(const char *path, uint32_t size) {
         TTF_Font* tmp = nullptr;
         tmp = TTF_OpenFont(path, size);
         return tmp;
     }
 
-    TTF_Font *res_getFont(uint32_t size, uint32_t type) { //sizes are 18, 24, 32, 48
-        return g_fontLib[size][type];
-    }
-
-    uint32_t res_getFontType(const char* name)
-    {
-        uint32_t i = 0;
-        while (strcmp(fontNames[i], name) != 0 && i < fontTypes) {i++;}
-        if (i == fontTypes)
-            return (uint32_t)-1;
-        return i;
+    TTF_Font* res_getFont(const char* name, uint32_t size) {
+        char path[100] = {"../data/fonts/"};
+        if (!name)
+            return nullptr;
+        uint32_t id = util::hash(name, strlen(name));
+        for (auto it = fonts->head; it; it = it->nx) {
+            if (it->data->size == size && it->data->id == id)
+                return it->data->font;
+        }
+        fonts->append(new FNT());
+        (*fonts->back())->font = res_loadTTF(strcat(path, name), size);
+        (*fonts->back())->size = size;
+        (*fonts->back())->id = id;
+        return (*fonts->back())->font;
     }
 
     /************************************************************/
 
-    e_exitCodes res_init()
+    util::e_exitCodes res_init()
     {
         //resource setup
         //font part
-        int fontSizes[fontNum] = {18, 24, 32, 48};
-        char path[100] = "../data/fonts/";
-        uint32_t term = strlen(path);
-        fontNames[0] = "font.ttf";
-        fontNames[1] = "Gothic_1.ttf";
-        fontNames[2] = "font.ttf";
-
-        for (int i = 0; i < fontNum; i++)
-            for (int j = 0; j < fontTypes; j++)
-        {
-            g_fontLib[i][j] = res_loadTTF(strcat(path, fontNames[j]), fontSizes[i]);
-            path[term] = 0;
-            if (g_fontLib[i][j] == nullptr)
-                return e_exitCodes::RES_TTF_ERR;
-        }
+        fonts = new util::list<FNT*>();
+        items = new util::vector<SDL_Texture*>(10);
 
         //image part
 
-        return e_exitCodes::OK;
+        return util::e_exitCodes::OK;
     }
 
     void res_clean() {
-        for (auto &i : g_fontLib)
-            for (auto &j: i)
-                TTF_CloseFont(j);
+        fonts->clean_heap();
+        delete items;
+        delete fonts;
     }
 }
 

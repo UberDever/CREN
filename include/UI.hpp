@@ -9,88 +9,161 @@
 
 //UI - user interface
 namespace UI {
-    using namespace util;
-    using namespace math;
 
     //constexpr vars (UI)
-    constexpr int UITextLen = 200;
+    const constexpr char* uiPath = "../data/db/ui.xml";
+    constexpr size_t tokenLen = 500;           //Length of token
+    constexpr size_t depthLen = 10;           //Depth of token recursion
+    constexpr size_t dataLen = 500;            //Length of text data
+    constexpr size_t tokenNameLen = 100;
+    constexpr size_t attrNameLen = 100;
+    constexpr size_t valueLen = 100;
+    constexpr size_t buttonKeyLen = 100;
+    constexpr size_t hashTableSize = 101;
 
     //UI enums
-    enum UI_TYPES : uint32_t
+    enum TYPES : size_t
     {
-        BLANK    = 10577140,
-        BUTTON   = 415276622,
-        SLIDER   = 520070527,
+        STATIC    = 0x00,
+        BUTTON    ,
+        SLIDER    ,
+        LIST      ,
 
         LAST     = 0x0F
     };
 
-    enum UI_CONTEXT : uint8_t
+    enum CONTEXT : size_t
     {
         MAIN_SCREEN  = 0x00,
-        GAME_PAUSE   = 0x01,
-        OPTIONS      = 0x02,
-        INV          = 0x03,
-        GAME_OVER    = 0x04
+        GAME_PAUSE   ,
+        OPTIONS      ,
+        PLAYER_MENU  ,
+        GAME_OVER    = 0x1F
     };
 
     //UI structs
-    struct UI_FRAME
+    union DATA
+    {
+        int* pInt {nullptr};
+        bool* pBool;
+        float* pFloat;
+    };
+
+    struct BUTTON
+    {
+        enum BUTTON_TYPE : size_t {
+            PUSH = 0x0,
+            CHKBOX    ,
+        };
+        char key[buttonKeyLen]{};
+        int val{0}; int def{0};
+        bool isPressed {false};
+        BUTTON_TYPE type {PUSH};
+    };
+
+    struct SLIDER
+    {
+        //TODO SLIDER
+    };
+
+    struct LIST
+    {
+        char key[buttonKeyLen]{};
+        int val{0}; int def{0};
+        int len{0};
+        bool isPressed {false};
+    };
+
+    struct FRAME
     {
         math::v2<int> pos; math::v2<int> size;
         math::v2<int> relPos; math::v2<int> relSize;
-        COLOR col;
-        UI_TYPES type;
-
-        UI_FRAME() : col{0}, type{BLANK} {}
+        util::COLOR col {0}; bool isVisible {true};
     };
 
-    struct UI_TEXT
+    struct TEXT
     {
         math::v2<int> pos; math::v2<int> relPos;
-        char text[UITextLen]; uint32_t size;
+        char text[dataLen] {""}; int size {0};
+        SDL_Texture* textTexture {nullptr};
 
-        COLOR col; uint32_t fontType; uint32_t alignment;
+        util::COLOR col {0}; TTF_Font *fnt {nullptr}; size_t alignment {520551755 /*center*/};
+        bool isChanged {true}; bool isVisible {true};
 
-        UI_TEXT () : text{""}, col{0}, fontType{0}, size{0}, alignment(520551755 /*center*/) {}
+        TEXT() = default;
+
+        TEXT(TEXT& cp)
+        {
+            pos = cp.pos; relPos = cp.relPos;
+            strcat(text, cp.text); size = cp.size;
+            col = cp.col; fnt = cp.fnt; alignment = cp.alignment;
+            isChanged = cp.isChanged; isVisible = cp.isVisible;
+        }
     };
 
-    struct UI_PICTURE
+    struct PICTURE
     {
         math::v2<int> pos; math::v2<int> size;
         math::v2<int> relPos; math::v2<int> relSize;
-        SDL_Texture* texture;
+        SDL_Texture* pic {nullptr}; bool isVisible {true};
 
-        UI_PICTURE () : texture{nullptr} {}
-        ~UI_PICTURE() {SDL_DestroyTexture(texture);}
+        PICTURE() = default;
+
+        PICTURE(PICTURE& cp)
+        {
+            pos = cp.pos; relPos = cp.relPos;
+            size = cp.size; relSize = cp.relSize;
+            pic = cp.pic; //Yes, that move is dangerous
+            isVisible = cp.isVisible;
+        }
+        ~PICTURE() {SDL_DestroyTexture(pic);}
     };
 
-    struct UI_ELEMENT
+    struct ELEMENT
     {
-        UI_FRAME* frame;                      //frame is field of element, all events are processed in account of frame coordinates. It is also parent for all components of element
-        list<UI_TEXT*> texts;                 //all text elements in element
-        list<UI_PICTURE*> pics;               //all pictures and icons
-        uint32_t id;
+        FRAME* frame {nullptr};                      //frame is field of element, all events are processed in account of frame coordinates. It is also parent for all components of element
+        util::list<TEXT*> texts;                 //all text elements in element
+        util::list<PICTURE*> pics;               //all pictures and icons
+        TYPES type {STATIC};
+        int id {-1};
 
-        list<UI_ELEMENT*> childNodes;   //all child nodes for this element
+        union {
+            struct BUTTON* btn;
+            struct SLIDER* sld;
+            struct LIST* lst {nullptr};
+        };
 
-        UI_ELEMENT() : frame{nullptr}, id{0} {}
-        ~UI_ELEMENT() {delete frame; texts.clean(); pics.clean(); childNodes.clean();}
+        util::list<ELEMENT*> childNodes;   //all child nodes for this element
+
+        ~ELEMENT() {
+            switch (type) {
+                case BUTTON: delete btn; break;
+                case SLIDER: delete sld; break;
+                case LIST: delete lst; break;
+                default: break;
+            }
+            delete frame;
+            texts.clean_heap();
+            pics.clean_heap();
+            childNodes.clean_heap();
+        }
     };
 
-    struct UI_SCENE
+    struct SCENE
     {
-        UI_ELEMENT* root; //first element is root element
-        UI_CONTEXT id;
+        ELEMENT* root {new ELEMENT()}; //first element is root element
+        CONTEXT id {MAIN_SCREEN};
 
-        UI_SCENE() : id{MAIN_SCREEN}, root{new UI_ELEMENT()} {root->id = -1;}
-        ~UI_SCENE() {delete root;}
+        SCENE() = default;
+        ~SCENE() {delete root;}
     };
 
-    list<UI_SCENE*>* getUI();
-    void setupUI(); //Used for changing UI according to resolution
+    util::list<SCENE*>* getUI();
+    util::hashT<DATA>* getUI_VARS();
 
-    e_exitCodes UI_init();
+    void setupChildUI(ELEMENT* pEl);
+
+    util::e_exitCodes UI_init();
     void UI_clean();
 }
 

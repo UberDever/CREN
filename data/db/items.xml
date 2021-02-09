@@ -3,11 +3,63 @@
 #
 #
 
-#<item id="" name="" ilvl="" lvl="" type="" quality="" cost=""></item>
+#<item sprite_id="" name="" ilvl="" lvl="" type="thing" quality="common" cost="">description</item>
 
 <base_items>
-    <item id="" name="" ilvl="" lvl="" type="" quality="" cost=""></item>
+    <thing>
+        <item name="itm1" size="3 3" sprite_id="0" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+        <item name="itm2" size="1 1" sprite_id="0" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+        <item name="itm3" size="3 4" sprite_id="0" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <ohweap>
+        <item name="oh1" size="1 3" sprite_id="0" ilvl="0" lvl="0" attrs="g_in_1 s_in_1 g_in_3" cost="0">description</item>
+    <thweap>
+        <item name="th1" size="2 3" sprite_id="0" ilvl="0" lvl="0" attrs="g_in_2 s_in_1 g_in_3" cost="0">description</item>
+    <chest>
+        <item name="ch1" size="2 3" sprite_id="0" ilvl="0" lvl="0" attrs="g_in_4 s_in_2 g_in_3" cost="0">description</item>
+    <helm>
+        <item name="hm1" size="2 2" sprite_id="0" ilvl="0" lvl="0" attrs="g_in_4 s_in_2 g_in_3" cost="0">description</item>
+    <gloves>
+        <item name="gl1" size="2 2" sprite_id="0" ilvl="0" lvl="0" attrs="g_in_3" cost="0">description</item>
+    <boots>
+        <item name="bt1" size="2 2" sprite_id="0" ilvl="0" lvl="0" attrs="g_in_3" cost="0">description</item>
+    <ring>
+        <item name="r1" sprite_id="0" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <amulet>
+        <item name="a1" sprite_id="0" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <shield>
+        <item name="s1" size="2 2" sprite_id="0" ilvl="0" lvl="0" attrs="g_in_4 g_in_3" cost="0">description</item>
+    <consumable>
+        <item name="c1" sprite_id="0" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <quest>
+        <item name="q1" sprite_id="0" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+
 </base_items>
 
 <unq_items>
+    <thing>
+        <item sprite_id="0" name="unqitm1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+        <item sprite_id="0" name="unqitm2" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+        <item sprite_id="0" name="unqitm3" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <ohweap>
+        <item sprite_id="0" name="unqoh1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <thweap>
+        <item sprite_id="0" name="unqth1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <chest>
+        <item sprite_id="0" name="unqch1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <helm>
+        <item sprite_id="0" name="unqhl1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <gloves>
+        <item sprite_id="0" name="unqgl1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <boots>
+        <item sprite_id="0" name="unqbt1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <ring>
+        <item sprite_id="0" name="unqr1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <amulet>
+        <item sprite_id="0" name="unqa1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <shield>
+        <item sprite_id="0" name="unqs1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <consumable>
+        <item sprite_id="0" name="unqc1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
+    <quest>
+        <item sprite_id="0" name="unqq1" ilvl="0" lvl="0" attrs="" cost="0">description</item>
 </unq_items>

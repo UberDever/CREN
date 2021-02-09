@@ -2,23 +2,18 @@
 // Created by uberdever on 19.04.2020.
 //
 
-#ifndef CREN_S_PAUSE_HPP
-#define CREN_S_PAUSE_HPP
+#ifndef CREN_S_UI_HPP
+#define CREN_S_UI_HPP
 
-#include "util.hpp"
-#include "gut.hpp"
+#include "game.hpp"
 
-namespace pause
+namespace ui
 {
-    using namespace util;
-    using namespace gut;
-    using namespace game;
-
-    e_exitCodes init();
-    e_gameStates event();
-    e_gameStates update();
+    util::e_exitCodes init();
+    util::e_gameStates event();
+    util::e_gameStates update();
     void render(float);
     void clean();
 }
 
-#endif //CREN_S_PAUSE_HPP
+#endif //CREN_S_UI_HPP

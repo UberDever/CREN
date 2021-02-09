@@ -145,7 +145,7 @@ namespace UI
         return exitCode;
     }
 
-    void UI_clean() {
+    void clean() {
         //TODO CLEAN UI
     }
 }

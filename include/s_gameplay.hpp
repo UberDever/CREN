@@ -5,9 +5,7 @@
 #ifndef CREN_S_GAMEPLAY_HPP
 #define CREN_S_GAMEPLAY_HPP
 
-#include "util.hpp"
 #include "game.hpp"
-#include "gut.hpp"
 
 namespace gameplay
 {

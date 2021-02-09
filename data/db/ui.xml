@@ -132,12 +132,22 @@
     
     <scene id="3"> #Player menu scene
         <element> #lhs
-            <frame pos="50 0" size="50 100" color="0x5bb0ff">
+            <frame pos="50 0" size="50 100" color="0x5bb0ffff">
             
             <element> #inventory
-                <frame pos="0 70" size="100 30" color="0xa94c00">
-                <picture pos="0 0" size="63 100" png="inv_cells.png">
-            </element>   
+                <frame pos="0 70" size="70 30" color="0xa94c00ff">
+                <picture pos="0 0" size="100 100" grid_size="10 5" grid="inv_cell.png"> #grid - compose picture from other elements in grid order
+            </element>
+            
+            #<element>
+                #<frame pos="10 88" size="80 10" color="0xFFFFFFFF">
+                #<text pos="50 50" size="36" color="0xFFFFFFFF" font="font.ttf" align="center">APPLY</text>
+                #<picture pos="0 0" size="100 100" png="button.png">
+                #<button var="OPTIONS_apply" value="0" default="0"></button>
+            #</element>
+            
+            
+               
         </element>    
     </scene>
     

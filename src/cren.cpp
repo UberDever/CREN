@@ -7,9 +7,9 @@
 namespace cren
 {
     //game cycle vars
-    e_gameStates curState = PAUSE;
-    SCENE* p_Scene[SCENE_NUM] = {nullptr};
-    constexpr uint32_t TICKS = 50;
+    e_gameStates curState = e_gameStates::UI;
+    SCENE* p_Scene[TEMP] = {nullptr};
+    constexpr uint32_t TICKS = 60;
     constexpr uint32_t SKIP_TIME = 1000 / TICKS;
     constexpr uint32_t FRAMESKIP = 5;
 
@@ -27,9 +27,9 @@ namespace cren
         while (curState != EXIT)
         {
             cycles = 0;
-            while (SDL_GetTicks() > time && cycles < FRAMESKIP)
+            while (SDL_GetTicks() > time && cycles < FRAMESKIP && curState != EXIT)
             {
-                curState = global::nextState(); //used for changing state on next iteration of cycle
+                curState = game::nextState(); //used for changing state on next iteration of cycle
                 curState = p_Scene[curState]->event();
                 curState = p_Scene[curState]->update();
 
@@ -50,14 +50,13 @@ namespace cren
     e_exitCodes init()
     {
         e_exitCodes exitCode = OK;
+        std::srand(unsigned(time(0)));
+        exitCode = static_cast<e_exitCodes>(exitCode + gut::gut_init());
+        exitCode = static_cast<e_exitCodes>(exitCode + res::res_init());
+        exitCode = static_cast<e_exitCodes>(exitCode + UI::UI_init());
+        exitCode = static_cast<e_exitCodes>(exitCode + items::items_init());
 
-        //exitCode = static_cast<e_exitCodes>(exitCode | math_init());
-        exitCode = static_cast<e_exitCodes>(exitCode | gut_init());
-        exitCode = static_cast<e_exitCodes>(exitCode | res_init());
-        exitCode = static_cast<e_exitCodes>(exitCode | UI_init());
-
-
-        exitCode = static_cast<e_exitCodes>(exitCode | game_init());
+        exitCode = static_cast<e_exitCodes>(exitCode + game::game_init());
 
 
         s_init();
@@ -66,11 +65,11 @@ namespace cren
     }
 
     void clean() {
-
-        res_clean();
-        gut_clean();
-        game_clean();
-        UI_clean();
+        res::res_clean();
+        gut::gut_clean();
+        game::game_clean();
+        UI::UI_clean();
+        items::items_clean();
 
         for (auto & i : p_Scene) {
             delete i;
@@ -80,12 +79,10 @@ namespace cren
     void s_init() {
         p_Scene[EXIT] = new SCENE();
         p_Scene[EXIT]->init_scene(Void::init, Void::event, Void::update, Void::render, Void::clean);
-        p_Scene[MAIN_MENU] = new SCENE();
-        p_Scene[MAIN_MENU]->init_scene(mainmenu::init, mainmenu::event, mainmenu::update, mainmenu::render, mainmenu::clean);
         p_Scene[GAMEPLAY] = new SCENE();
         p_Scene[GAMEPLAY]->init_scene(gameplay::init, gameplay::event, gameplay::update, gameplay::render, gameplay::clean);
-        p_Scene[PAUSE] = new SCENE();
-        p_Scene[PAUSE]->init_scene(pause::init, pause::event, pause::update, pause::render, pause::clean);
+        p_Scene[e_gameStates::UI] = new SCENE();
+        p_Scene[e_gameStates::UI]->init_scene(ui::init, ui::event, ui::update, ui::render, ui::clean);
         p_Scene[TEMP] = new SCENE();
         p_Scene[TEMP]->init_scene(temp::init, temp::event, temp::update, temp::render, temp::clean);
     }

@@ -6,25 +6,34 @@
 #define CREN_GUT_HPP
 
 #include "util.hpp"
-#include "UI.hpp"
-#include "game.hpp"
 
 //gut - contains all graphic related utilities
 namespace gut
 {
     using namespace util;
-    using namespace res;
-    using namespace math;
-    using namespace cfg;
-    using namespace UI;
+
+    inline void setPixel(int x, int y)
+    {
+        global::gameScreenBuffer()[y + x] = 0xFFFFFF00;
+    }
+
+    inline void cls()
+    {
+        SDL_RenderClear(global::renderer());
+        memset(global::gameScreenBuffer(), SDL_ALPHA_TRANSPARENT, global::cfg::scrRenW() * global::cfg::scrRenH() * sizeof(uint32_t));
+    }
+
+    inline math::v2<float>& textScaleFactor(){
+        static math::v2<float> var;
+        return var;
+    }
+
+    /************************************************************/
+
+    void gut_updWin(int w, int h, uint32_t flags);
 
     e_exitCodes gut_init();
     void gut_clean();
-
-    void gut_raycast();
-    void gut_UI();
-
-    void gut_updWin(int w, int h, uint32_t flags);
 }
 
 #endif //CREN_GUT_HPP

@@ -5,27 +5,13 @@
 #ifndef CREN_GAME_HPP
 #define CREN_GAME_HPP
 
-#include "util.hpp"
+#include "gut.hpp"
 #include "UI.hpp"
-
-//global - initially for interscene communication
-namespace global
-{
-    using namespace util;
-    using namespace UI;
-
-    e_gameStates& nextState();
-    UI_CONTEXT& curUIContext();
-    SDL_Surface* curScreenSurf();
-}
+#include "items.hpp"
 
 //game - for managing all game related resources
 namespace game
 {
-    using namespace util;
-    using namespace math;
-    using namespace UI;
-
     /*Game structs declarations*/
 
     struct MAP
@@ -39,12 +25,21 @@ namespace game
     //useful structs
     struct PLAYER
     {
+        items::INV* inv;
+
         //Raycast and positioning variables
-        v2<float> pos; v2<float> dir; v2<float> plane; v2<float> momentum; float rotSpeed;  float speed;
+        math::v2<float> pos; math::v2<float> dir; math::v2<float> plane; math::v2<float> momentum; float rotSpeed;  float speed; int offset; int off;
 
         PLAYER():
-                pos{0,0}, dir{1.f, 0}, plane{0, cfg::getCFG().pl_planeSize}, momentum{0, 0}, speed{0.2f}, rotSpeed{PI / 180 * cfg::getCFG().pl_rotSpeed}
+                pos{0,0}, dir{0, 1.f}, plane{-global::cfg::pl_planeSize(), 0}, momentum{0, 0}, speed{0.2f}, rotSpeed{math::PI / 180 * global::cfg::pl_rotSpeed()},
+                inv{nullptr},
+                offset{0}, off{0}
         {}
+
+        inline float FOV() const
+        {
+            return atan(plane.y / dir.x) / math::PI * 360;
+        }
 
         inline float mapAngle()
         {
@@ -57,20 +52,24 @@ namespace game
     {
         PLAYER* pl;
         MAP* mp;
-        UI_SCENE** ui; //array of pointers for ui scenes
+        UI::SCENE** ui; //array of pointers for ui scenes
+        util::hashT<UI::DATA> *ui_vars;
 
-        GAME_DATA() : pl{nullptr}, mp{nullptr}, ui{nullptr} {}
+        GAME_DATA() : pl{nullptr}, mp{nullptr}, ui{nullptr}, ui_vars{nullptr} {}
         ~GAME_DATA()
         {
             delete pl;
             delete mp;
-            delete ui; //delete array of pointers, contains handled by ui
+            delete[] ui; //delete array of pointers, contains handled by ui
         }
     };
 
     GAME_DATA* getData();
 
-    e_exitCodes game_init();
+    util::e_gameStates& nextState();
+    UI::CONTEXT& curUIContext();
+
+    util::e_exitCodes game_init();
     void game_clean();
 }
 

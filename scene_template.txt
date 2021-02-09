@@ -60,7 +60,7 @@ namespace SCENE_NAME
 
    /************************************************************/
 
-   e_exitCodes init() {
+   e_exitCodes UI_init() {
        DATA* pd = new DATA();
 
        pEventCases[0] = onExit;
