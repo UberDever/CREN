@@ -46,18 +46,18 @@
     <consumable>
     <quest>
     <internal>
-        <attr id="g_in_1" min_ilvl="0" growth="1.2" double="true" val="5 10" cap="9999 9999" str="Одноручный урон & - &">
-        <attr id="g_in_2" min_ilvl="0" growth="1.6" double="true" val="5 10" cap="9999 9999" str="Двуручный урон & - &">
-        <attr id="g_in_3" min_ilvl="0" growth="0.6" val="20 20" cap="100 100" str="Прочность & ед.">
-        <attr id="g_in_4" min_ilvl="0" growth="1.5" val="2 5" cap="60 60" str="Физическая защита &">
-        
+        <attr id="g_in_1" min_ilvl="0" growth="1.2" double="true" val="5 10" cap="9999 9999" str="One handed damage & - &">
+        <attr id="g_in_2" min_ilvl="0" growth="1.6" double="true" val="5 10" cap="9999 9999" str="Two handed damage & - &">
+        <attr id="g_in_3" min_ilvl="0" growth="0.6" val="20 20" cap="100 100" str="Durability & p">
+        <attr id="g_in_4" min_ilvl="0" growth="1.5" val="2 5" cap="60 60" str="Armor &">
+
         <attr id="intQ1" min_ilvl="" growth="-10" val="20 0" str="Кустарное - не помешала бы обработка"> #basically, that's one attr
         <attr id="intQ2" min_ilvl="" growth="-10" val="0 20" str="Подлатанное - не такое прочное как раньше">
         <attr id="intQ3" min_ilvl="" growth="-20" val="10 10" str="Раритетное - искусное, но уже довольно старое">
         #special attrs
-        <attr id="s_in_1" min_ilvl="0" growth="0" val="30 30" cap="60 60" str="Скорость атаки &"> #speed in tics
-        
-        <attr id="s_in_2" min_ilvl="0" growth="0" val="10 10" cap="50 50" str="Шанс уклонения &">
+        <attr id="s_in_1" min_ilvl="0" growth="0" val="30 30" cap="60 60" str="Attack speed &"> #speed in tics
+
+        <attr id="s_in_2" min_ilvl="0" growth="0" val="10 10" cap="50 50" str="Chance of evasion &">
 </greater_attrs>
 
 <lesser_attrs>
